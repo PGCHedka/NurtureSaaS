@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Nav from '../components/Nav.jsx';
@@ -26,5 +25,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;
