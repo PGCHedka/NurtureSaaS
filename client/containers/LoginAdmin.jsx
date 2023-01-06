@@ -3,7 +3,7 @@ import React from "react";
 import {Routes, Route} from 'react-router-dom';
 import forgotModal from "./forgotModal.jsx";
 
-const Login = () => {
+const LoginAdmin = () => {
 
     const showForgotModal = () => {
         <forgotModal/>
@@ -29,4 +29,4 @@ const Login = () => {
 
 };
 
-export default Login;
+export default LoginAdmin;
