@@ -82,8 +82,8 @@ const Register = () => {
                 }
             </form>
             <button type="submit" onClick={handleSubmit}>Submit</button>
-            <button className="goToLogin" onClick={handleGoToTeacherLogin}>Already signed up as teacher?</button>
-            <button className="goToLogin" onClick={handleGoToAdminLogin}>Already signed up as admin user?</button>
+            <a className="goToLogin" onClick={handleGoToTeacherLogin}>Already signed up as teacher?</a>
+            <a className="goToLogin" onClick={handleGoToAdminLogin}>Already signed up as admin user?</a>
         </div>
     );
 
