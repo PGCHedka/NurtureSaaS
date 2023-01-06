@@ -1,0 +1,32 @@
+#admin {
+  display: flex;
+  flex-direction: row;
+  .main-sidebar {
+    width: 400px;
+  }
+  #teach-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 600px));
+
+    .teach-img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+    }
+    .teacher-stat {
+      background-color: aquamarine;
+      margin: 20px;
+      padding: 10px;
+    }
+    .teacher-stat-flag {
+      background-color: red;
+      margin: 20px;
+      padding: 10px;
+    }
+  }
+}
+.grades {
+  font-size: 30px;
+  margin: 5px;
+  background-color: rgba(rgb(107, 107, 255), 0.15);
+}
