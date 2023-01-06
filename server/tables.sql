@@ -4,7 +4,7 @@ CREATE TABLE  tool.admins (
   "_id" serial NOT NULL,
   "first_name" varchar(30) NOT NULL, 
   "last_name" varchar(40) NOT NULL,
-  "email" varchar(80) NOT NULL, 
+  "email" varchar(80) NOT NULL UNIQUE, 
   "password" varchar NOT NULL,
   "date_registered" date NOT NULL,
   CONSTRAINT "admins_pk" PRIMARY KEY ("_id")
@@ -16,7 +16,7 @@ CREATE TABLE  tool.teachers (
   "_id" serial NOT NULL,
   "first_name" varchar(30) NOT NULL,
   "last_name" varchar(30) NOT NULL,
-  "email" varchar(80) NOT NULL,
+  "email" varchar(80) NOT NULL UNIQUE,
   "password" varchar NOT NULL,
   "date_registered" date NOT NULL,
   "flagged" boolean NOT NULL DEFAULT FALSE,
@@ -88,6 +88,3 @@ ALTER TABLE tool.class_assignments ADD CONSTRAINT "class_assignements_fk0" FOREI
 ALTER TABLE tool.student_classes ADD CONSTRAINT "student_classes_fk0" FOREIGN KEY ("student_id") REFERENCES tool.students("_id");
 ALTER TABLE tool.student_classes ADD CONSTRAINT "student_classes_fk1" FOREIGN KEY ("class_id") REFERENCES tool.classes("_id");
 
-INSERT INTO tool.admins VALUES (1, 'Anna', 'Larouche', 'hello@gmail.com', 'hello', '2023-01-06');
-INSERT INTO tool.admins VALUES (2, 'Kate', 'Angelopoulos', 'hello1@gmail.com', 'hello', '2023-01-06');
-INSERT INTO tool.teachers VALUES (1, 'Dr. Emily', 'Chu', 'hello2@gmail.com', 'hello', '2023-01-06', FALSE, 1, 7, 11);
