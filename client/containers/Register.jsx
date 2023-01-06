@@ -1,7 +1,11 @@
-import React from "react";
-import { Routes, Route } from 'react-router-dom';
+import React, {useCallback} from "react";
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 const Register = () => {
+
+    const navigate = useNavigate();
+    const handleGoToAdminLogin = useCallback(() => navigate('/admin_login', {replace: true}));
+    const handleGoToTeacherLogin = useCallback(() => navigate('/teacher_login', {replace: true}));
 
     return (
         <div className="cover">
@@ -21,6 +25,8 @@ const Register = () => {
                 </label>
                 <input type="submit" value="Register"></input>
             </form>
+            <button className="goToLogin" onClick={handleGoToTeacherLogin}>Already signed up as teacher?</button>
+            <button className="goToLogin" onClick={handleGoToAdminLogin}>Already signed up as admin user?</button>
         </div>
     );
 
