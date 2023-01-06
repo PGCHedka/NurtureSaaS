@@ -14,7 +14,7 @@ const initialState = {
 
 const rootReducer = createReducer(initialState, (builder) =>
   builder.addCase(loginAction, (state, action) => {
-    console.log('here');
+    console.log('loginAction');
     state.loggedIn ? (state.loggedIn = false) : (state.loggedIn = true);
   })
 );

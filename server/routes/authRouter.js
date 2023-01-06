@@ -11,12 +11,12 @@ router.post(
 )
 
 router.post(
-    '/admin/signup',
-    authController.adminSignUp,
-    authController.adminLogin,
-    (req, res) => {
-        return res.status(200).json(res.locals);
-    }
+  '/admin/signup',
+  authController.adminSignUp,
+  authController.adminLogin,
+  (req, res) => {
+      return res.status(200).json(res.locals);
+  }
 )
 
 router.post(

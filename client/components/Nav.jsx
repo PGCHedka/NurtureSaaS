@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import DropDown from './Dropdown.jsx';
+import styles from '../styles/_components.scss';
 
 const Nav = () => {
   const loggedInStatus = useSelector((state) => state.loggedIn);
