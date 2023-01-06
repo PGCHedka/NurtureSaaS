@@ -2,6 +2,7 @@ import axios from "axios";
 import React, {useCallback, useState, useEffect} from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import DropDown from "../components/Dropdown.jsx";
+import '../styles/_layout.scss';
 
 const Register = () => {
 
@@ -25,7 +26,7 @@ const Register = () => {
     return (
         <div className="cover">
             <h1>Register here!</h1>
-            <form>
+            <form className="form">
                 <label>
                     Email:
                     <input id="email" type="text" placeholder="Email"></input>
