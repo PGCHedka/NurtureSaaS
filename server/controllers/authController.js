@@ -1,6 +1,5 @@
 const db = require('../models/postgres');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 const authController = {};
 
@@ -26,8 +25,30 @@ authController.teacherSignUp = async(req, res, next) => {
 };
 
 authController.teacherLogin = async(req, res, next) => {
-
-
+  const { email, password } = req.body;
+  try {
+    const q = `SELECT * FROM users WHERE email = $1`;
+    const values = [email];
+    const { rows } = await db.query(q);
+    console.log(rows);
+    if(await bcrypt.compare(password, rows[0].password)){
+      const teacher = {
+        id: rows[0]._id,
+        name: `${rows[0].first_name} ${rows[0].last_name}`,
+        flagged: rows[0].flagged,
+      }
+      res.locals = teacher;
+    } else {
+      return next({ status: 403 });
+    }
+    return next();
+  } catch(err) {
+    return next({
+      log: `Error in authController.teacherLogin: ${err}`,
+      status: 500,
+      message: 'Cannot login teacher right now, sorry!',
+    });
+  }
 };
 
 
