@@ -99,7 +99,7 @@ authController.adminLogin = async(req, res, next) => {
     return next({
       log: `Error in authController.teacherLogin: ${err}`,
       status: 500,
-      message: 'Cannot login teacher right now, sorry!',
+      message: 'Cannot login admin right now, sorry!',
     });
   }
 }
