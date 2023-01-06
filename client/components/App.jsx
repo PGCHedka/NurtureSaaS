@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
+import Register from '../containers/Register.jsx';
 
 const App = () => {
   return (

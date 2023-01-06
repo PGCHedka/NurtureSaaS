@@ -1,9 +1,8 @@
-
 import React from "react";
 import {Routes, Route} from 'react-router-dom';
 import forgotModal from "./forgotModal.jsx";
 
-const Login = () => {
+const LoginTeacher = () => {
 
     const showForgotModal = () => {
         <forgotModal/>
@@ -11,10 +10,10 @@ const Login = () => {
 
     return (
         <div className="cover">
-            <h2>Log into your Admin account</h2>
+            <h2>Log into your teacher account</h2>
             <form>
                 <label>
-                     Enter your admin email
+                     Enter your teacher email
                     <input type="text" placeholder="Email"></input>
                 </label>
                 <label>
@@ -29,4 +28,4 @@ const Login = () => {
 
 };
 
-export default Login;
+export default LoginTeacher;
