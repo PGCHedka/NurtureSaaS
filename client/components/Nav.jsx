@@ -1,23 +1,30 @@
-import '../styles/nav.scss';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Links from './Links.jsx';
 import { useSelector } from 'react-redux';
-
-const logo = require('../assets/kvasir-coffee.png');
+import DropDown from './Dropdown.jsx';
 
 const Nav = () => {
-  console.log('here');
   const loggedInStatus = useSelector((state) => state.loggedIn);
-  console.log(loggedInStatus, 'nav');
+  const userType = useSelector((state) => state.userInfo.type);
+  const [linkOptions, setLinkOptions] = useState([]);
+  const [buttonPopup, setButtonPopup] = useState(false);
+
+  useEffect(() => {
+    userType === 'admin'
+      ? setLinkOptions([
+          'Add Student',
+          'Update Teacher',
+          'Update Student',
+          'Log Out',
+        ])
+      : setLinkOptions(['Assign', 'Logout']);
+  }, []);
+
   return (
     <div id='navbar'>
-      <section id='left-nav'>
-        <img src={logo} id='logo-pic' alt='Kvasir logo' />
-        <h1 id='nav-title'>Kvasir</h1>
-      </section>
-      <section id='right-nav'>
-        <Links loggedIn={loggedInStatus} />
-      </section>
+      {/* <Modal action={currentAction} setTrigger={setButtonPopup} trigger={buttonPopup}/>   */}
+      <h1 id='nav-title'>Student</h1>
+      <DropDown options={linkOptions} handleChange={(name) => {}} />
     </div>
   );
 };
