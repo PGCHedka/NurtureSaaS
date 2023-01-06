@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => {
     return res
       .status(200)
-      .sendFile(path.join(__dirname, '../build/index/html'));
+      .sendFile(path.join(__dirname, '../build/index.html'));
   });
 }
 

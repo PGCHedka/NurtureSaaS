@@ -6,7 +6,7 @@ module.exports = {
   entry: './client/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'index.html'),
+      template: path.resolve(__dirname, './client/index.html'),
       filename: 'index.html',
     }),
     new MiniCssExtractPlugin(),
