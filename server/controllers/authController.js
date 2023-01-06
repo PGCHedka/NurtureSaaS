@@ -1,6 +1,5 @@
 const db = require('../models/postgres');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 const authController = {};
 
@@ -26,8 +25,31 @@ authController.teacherSignUp = async(req, res, next) => {
 };
 
 authController.teacherLogin = async(req, res, next) => {
-
-
+  const { email, password } = req.body;
+  console.log(email, password);
+  try {
+    const q = `SELECT * FROM tool.teachers WHERE email = $1`;
+    const values = [email];
+    const { rows } = await db.query(q, values);
+    console.log(rows);
+    if(await bcrypt.compare(password, rows[0].password)){
+      const teacher = {
+        id: rows[0]._id,
+        name: `${rows[0].first_name} ${rows[0].last_name}`,
+        flagged: rows[0].flagged,
+      }
+      res.locals = teacher;
+    } else {
+      return next({ status: 403 });
+    }
+    return next();
+  } catch(err) {
+    return next({
+      log: `Error in authController.teacherLogin: ${err}`,
+      status: 500,
+      message: 'Cannot login teacher right now, sorry!',
+    });
+  }
 };
 
 
@@ -56,7 +78,30 @@ authController.adminSignUp = async(req, res, next) => {
 };
 
 authController.adminLogin = async(req, res, next) => {
-        
+  const { email, password } = req.body;
+  console.log(email, password);
+  try {
+    const q = `SELECT * FROM tool.admins WHERE email = $1`;
+    const values = [email];
+    const { rows } = await db.query(q, values);
+    console.log(rows);
+    if(await bcrypt.compare(password, rows[0].password)){
+      const admin = {
+        id: rows[0]._id,
+        name: `${rows[0].first_name} ${rows[0].last_name}`,
+      }
+      res.locals = admin;
+    } else {
+      return next({ status: 403 });
+    }
+    return next();
+  } catch(err) {
+    return next({
+      log: `Error in authController.teacherLogin: ${err}`,
+      status: 500,
+      message: 'Cannot login admin right now, sorry!',
+    });
+  }
 }
 
 module.exports = authController;

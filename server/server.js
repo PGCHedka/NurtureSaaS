@@ -4,7 +4,7 @@ const path = require('path');
 const PORT = 3000;
 const authRouter = require('./routes/authRouter');
 
-// create express ap
+// create express app
 const app = express();
 
 /**
