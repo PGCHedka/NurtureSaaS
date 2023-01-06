@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const PORT = 3000;
 
-// create express ap
+// create express app
 const app = express();
 
 /**

@@ -12,8 +12,8 @@ const Nav = () => {
   return (
     <div id='navbar'>
       <section id='left-nav'>
-        <img src={logo} id='logo-pic' alt='Kvasir logo' />
-        <h1 id='nav-title'>Kvasir</h1>
+        <img src={logo} id='logo-pic' alt='Student logo' />
+        <h1 id='nav-title'>Student</h1>
       </section>
       <section id='right-nav'>
         <Links loggedIn={loggedInStatus} />
