@@ -23,7 +23,7 @@ router.post(
   '/teacher/login', 
   authController.teacherLogin,
   (req, res) => {
-    return res.status(200).json(res.locals);
+    return res.status(200).send('hello');
   }
 )
 
