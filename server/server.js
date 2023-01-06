@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const PORT = 3000;
+const authRouter = require('./routes/authRouter');
 
 // create express ap
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());
 /**
  * Routes
  */
+app.use('/auth', authRouter);
 
 // console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'production') {

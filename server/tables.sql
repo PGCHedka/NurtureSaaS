@@ -5,7 +5,7 @@ CREATE TABLE  tool.admins (
   "first_name" varchar(30) NOT NULL, 
   "last_name" varchar(40) NOT NULL,
   "email" varchar(80) NOT NULL, 
-  "password" varchar(30) NOT NULL,
+  "password" varchar NOT NULL,
   "date_registered" date NOT NULL,
   CONSTRAINT "admins_pk" PRIMARY KEY ("_id")
 ) WITH (
@@ -17,7 +17,7 @@ CREATE TABLE  tool.teachers (
   "first_name" varchar(30) NOT NULL,
   "last_name" varchar(30) NOT NULL,
   "email" varchar(80) NOT NULL,
-  "password" varchar(30) NOT NULL,
+  "password" varchar NOT NULL,
   "date_registered" date NOT NULL,
   "flagged" boolean NOT NULL DEFAULT FALSE,
   "grade_1" integer NOT NULL,
