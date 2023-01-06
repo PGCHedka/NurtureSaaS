@@ -25,14 +25,7 @@ module.exports = {
       publicPath: '/',
     },
     proxy: {
-      '/': {
-        target: 'http://localhost:8080/',
-        router: () => 'http://localhost:3000',
-      },
-      '/user': {
-        target: 'http://localhost:8080',
-        router: () => 'http://localhost:3000',
-      },
+      '/' : 'http://localhost:3000'
     },
   },
   module: {
