@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const authController = {};
 
-authController.teacherSignUp = async(req, res, next) => {
+authController.teacherSignUp = async (req, res, next) => {
   const { firstName, lastName, email, password, grade1, grade2, grade3 } = req.body;
   const today = new Date().toDateString();
   try {

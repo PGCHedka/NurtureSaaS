@@ -21,8 +21,7 @@ const Nav = () => {
 
   return (
     <div id='navbar'>
-      {/* <Modal action={currentAction} setTrigger={setButtonPopup} trigger={buttonPopup}/>   */}
-      <h1 id='nav-title'>Student</h1>
+      <h1 id='nav-title'>PGCHedka</h1>
       <DropDown options={linkOptions} handleChange={(name) => {}} />
     </div>
   );
