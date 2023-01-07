@@ -44,7 +44,7 @@ const LoginTeacher = () => {
     return (
         <div>
             <div className="cover">
-                <h2>Log into your teacher account</h2>
+                <h2>Log into your Teacher account</h2>
                 <form onSubmit={handleSubmit} className='form'>
                     <label>Enter your teacher email:</label>
                     <input onChange={handleEmail} type="text" placeholder="Email"></input>

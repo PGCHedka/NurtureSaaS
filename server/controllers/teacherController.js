@@ -66,6 +66,27 @@ teacherController.getStudents = async (req, res, next) => {
     }
 }
 
-
+teacherController.postAssignment = async (req, res, next) => {
+    //console.log(req.body)
+    const { class_id, teacher_id, time } = req.body;
+    try {
+        const q = `INSERT INTO tool.class_assignments (class_id, teacher_id, time)
+                    VALUES ($1, $2, $3)
+                    RETURNING *`;
+        
+        const values = [class_id, teacher_id, time];
+        const { rows } = await db.query(q, values);
+        console.log('rows: ', rows);
+        res.locals = rows[0];
+        return next();
+    } catch (err) {
+        console.log(err);
+        return next({
+            log: `Error in teacherController postAssignment middleware: ${err}`,
+            status: 501,
+            message: 'Cannot post assignment right now :(',
+        });
+    }
+}
 
 module.exports = teacherController;

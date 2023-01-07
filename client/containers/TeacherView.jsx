@@ -16,12 +16,15 @@ const TeacherView = () => {
       const response = await axios.get(`teacher/students/${currClass}`, {
         params: { class: currClass },
       });
-      console.log('this is student data', response.data)
-      const students = response.data.map(student => {
-        console.log(student)
-        return <Student name={student.first_name} time={student.minutes}/>
-      })
-      setStudents(students);
+      if (!Object.keys(response.data).length) {
+        setStudents([])
+      } else {
+        const students = response.data.map(student => {
+          console.log(student)
+          return <Student name={student.first_name} time={student.minutes}/>
+        })
+        setStudents(students);
+      }
     } catch (err) {
       console.log(err);
     }

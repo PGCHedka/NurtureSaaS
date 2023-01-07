@@ -153,6 +153,7 @@ adminController.getStudents = async (req, res, next) => {
     q += ` GROUP BY s._id`;
     console.log(q);
     const { rows } = await db.query(q);
+    console.log(rows)
     res.locals = rows;
     console.log(rows);
     return next();

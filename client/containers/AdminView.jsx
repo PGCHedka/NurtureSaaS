@@ -76,9 +76,10 @@ const Admin = () => {
             trigger={updatePopup}
             setTrigger={setUpdatePopup}
           />
+          {console.log('minutes', student.minutes)}
           <Student
             name={student.first_name + ' ' + student.last_name}
-            time={100}
+            time={student.minutes}
             trigger={setUpdatePopup}
           />
         </div>
@@ -98,7 +99,7 @@ const Admin = () => {
         setTeachers(teacherArray);
       } else {
         const studentArray = response.data;
-        console.log(studentArray);
+        console.log('studentarray', studentArray);
         setStudents(studentArray);
       }
     } catch (err) {
