@@ -4,14 +4,13 @@ import forgotModal from "./forgotModal.jsx";
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
-import { loginAction } from '../rootReducer.js';
+import { loginAction, userIDAction } from '../rootReducer.js';
 
 
 const LoginAdmin = () => {
     const [loginEmail, setLoginEmail] = useState();
     const [loginPass, setLoginPass] = useState();
-    const [authenticated, setAuthenticated] = useState(false);
-    const loggedInStatus = useSelector((state) => state.loggedIn)
+    const loggedInStatus = useSelector((state) => state.loggedIn);
     const dispatch = useDispatch();
 
 
@@ -32,7 +31,10 @@ const LoginAdmin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('auth/admin/login', { email: loginEmail, password: loginPass })
-            .then(res => dispatch(loginAction()))
+            .then(res => { 
+                dispatch(loginAction())
+                dispatch(userIDAction(res.data.id))
+            })
             .catch(err =>  {
                 console.log(err);
                 showForgotModal();
