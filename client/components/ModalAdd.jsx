@@ -26,6 +26,15 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
     console.log(response);
   }
 
+  const inviteTeacher = async() => {
+    const email = document.getElementById('email').value;
+    console.log(email);
+    const response = await axios.post(`admin/teacher/invite`, {
+      email: email
+    });
+    console.log(response);
+  }
+
   const classesArray = [<option value='None'>None</option>];
   for (let key in classes) {
     classesArray.push(<option value={key}>{key}</option>);
@@ -40,18 +49,12 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
             X
           </button>
           <div className='input-data'>
-            <label>First Name:</label>
-            <input required id='first-name' type='text' placeholder='First Name' />
-            <label>Last Name:</label>
-            <input required id='last-name' type='text' placeholder='Last Name' />
-            <label>Grade: </label>
-            <input id='grade1' type='number' min='0' max='12' placeholder='0'/>
-            <input id='grade2' type='number' min='0' max='12' placeholder='0'/>
-            <input id='grade3' type='number' min='0' max='12' placeholder='0'/>
-            <button className='submitBtn'>Submit</button>
-            </div>
+            <label>Input Teacher Email: </label>
+            <input id="email" type ="email" />
+            <button onClick={inviteTeacher} className='submitBtn'>Submit</button>
           </div>
         </div>
+      </div>
     ) : (
       <div id='popup'>
         <div id='popup-inner'>

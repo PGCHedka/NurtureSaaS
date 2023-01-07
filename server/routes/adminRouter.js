@@ -58,4 +58,9 @@ router.get('/teacher', adminController.getTeacher, (req, res) => {
 router.get('/classes', adminController.getClasses, (req, res) => {
   return res.status(200).json(res.locals);
 });
+
+router.post('/teacher/invite', adminController.inviteTeacher, (req, res) => {
+  return res.status(200).json(res.locals);
+});
+
 module.exports = router;
