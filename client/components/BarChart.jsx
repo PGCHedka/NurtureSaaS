@@ -43,10 +43,8 @@ const BarChart = ({ time }) => {
       },
     ],
   };
-  const [barChartData, setBarChartData] = useState(initialData);
   ChartJS.defaults.datasets.bar.barThickness = 75;
   ChartJS.defaults.scale.display = false;
-  console.log(ChartJS.defaults);
   const option = {
     indexAxis: 'y',
     elements: {
@@ -86,7 +84,7 @@ const BarChart = ({ time }) => {
   };
   return (
     <div className='bar-chart-container'>
-      <Bar className='bar-chart-js' data={barChartData} options={option} />
+      <Bar className='bar-chart-js' data={initialData} options={option} />
     </div>
   );
 };
