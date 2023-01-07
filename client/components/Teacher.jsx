@@ -15,8 +15,8 @@ const Teacher = ({ name, time }) => {
         alt='teacher image'
       ></img>
       <div className='teach-info'>
-        <h2>FLAG AND BAN: {name}</h2>
-        <h2>avg hours of hwk per day</h2>
+        <h2>{name}</h2>
+        <h2>Average Homework Hours: {(time / 60).toFixed(2)} Hours</h2>
       </div>
     </div>
   ) : (
@@ -28,7 +28,7 @@ const Teacher = ({ name, time }) => {
       ></img>
       <div className='teach-info'>
         <h2>{name}</h2>
-        <h2>avg hours of hwk per day</h2>
+        <h2>Average Homework Hours: {(time / 60).toFixed(2)} Hours</h2>
       </div>
     </div>
   );

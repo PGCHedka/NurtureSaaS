@@ -1,26 +1,33 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
-import { current } from '@reduxjs/toolkit';
 
 // // //ACTIONS - i've included an example, feel free to change
 const loginAction = createAction('loginAction');
+const updateView = createAction('updateView');
 
 //user type can be admin, teacher
 const initialState = {
   userInfo: {
     type: 'admin',
   },
+  view: 'teachers',
   loggedIn: false,
 };
 
 const rootReducer = createReducer(initialState, (builder) =>
-  builder.addCase(loginAction, (state, action) => {
-    console.log('loginAction');
-    state.loggedIn ? (state.loggedIn = false) : (state.loggedIn = true);
-  })
+  builder
+    .addCase(loginAction, (state, action) => {
+      state.loggedIn ? (state.loggedIn = false) : (state.loggedIn = true);
+    })
+    .addCase(updateView, (state, action) => {
+      console.log(action.payload);
+      action.payload === 'View Students'
+        ? (state.view = 'students')
+        : (state.view = 'teachers');
+    })
 );
 
 // //export reducer
 export default rootReducer;
 
 // export actions
-export { loginAction };
+export { loginAction, updateView };
