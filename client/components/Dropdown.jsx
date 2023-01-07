@@ -24,7 +24,7 @@ const DropDown = ({ options, handleChange }) => {
             handleMenu(name);
             handleChange(name);
             // setAction(name);
-            if (name !== 'Log Out') {
+            if (name !== 'Logout') {
               // setButtonPopup(true);
               dispatch(updateView(name));
             } else {

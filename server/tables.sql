@@ -118,7 +118,7 @@ INSERT INTO tool.classes VALUES (19, 'Nutrition 101', 2, 8, 'We talk about cooki
 INSERT INTO tool.classes VALUES (20, 'How to Cope with Grief', 11, 11, 'We help you handle loss.');
 INSERT INTO tool.classes VALUES (21, 'Survival 101', 6, 8, 'We talk about hostile nature and stuff.');
 INSERT INTO tool.classes VALUES (22, 'Navigation', 6, 8, 'We talk about maps and stuff.');
-INSERT INTO tool.classes VALUES (23, 'Defense Against the Dark Arts', 10, 9, 'We talk about cars and stuff.');
+INSERT INTO tool.classes VALUES (23, 'Defense Against the Dark Arts', 10, 9, 'We talk about the dark side and stuff.');
 INSERT INTO tool.classes VALUES (24, 'The Science of Addiction', 11, 11, 'We talk about alcohol and drugs.');
 INSERT INTO tool.classes VALUES (25, 'Carpentry', 4, 7, 'We talk about birdhouses and stuff.');
 INSERT INTO tool.classes VALUES (26, 'Electronics 101', 10, 8, 'We talk about transistors and stuff.');

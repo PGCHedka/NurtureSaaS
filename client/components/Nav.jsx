@@ -11,7 +11,7 @@ const Nav = () => {
 
   useEffect(() => {
     userType === 'admin'
-      ? setLinkOptions(['View Students', 'View Teachers', 'Log Out'])
+      ? setLinkOptions(['View Students', 'View Teachers', 'Logout'])
       : setLinkOptions(['Assign', 'Logout']);
   }, []);
 

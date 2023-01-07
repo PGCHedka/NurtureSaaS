@@ -38,7 +38,7 @@ const LoginAdmin = () => {
       })
       .catch((err) => {
         console.log(err);
-        showForgotModal();
+          alert('Wrong email or password.');
       });
   };
 
@@ -62,9 +62,6 @@ const LoginAdmin = () => {
           </label>
           <input type='submit' className='submitBtn' value='Login'></input>
         </form>
-        <button className='goToLogin' onClick={showForgotModal}>
-          Forgot username or password?
-        </button>
         {loggedInStatus && <Navigate to='/dashboard' replace={true} />}
       </div>
     </div>
