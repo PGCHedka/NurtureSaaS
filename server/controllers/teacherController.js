@@ -27,7 +27,9 @@ teacherController.getStudents = async (req, res, next) => {
     try {
         const q = `SELECT *
                     FROM tool.students s
-                    WHERE `;
+                    JOIN student_classes sc
+                    ON sc.student_id = s._id
+                    WHERE sc.class_id = $1`;
         const values = [id];
         const { rows } = await db.query(q, values);
         res.locals = rows;
