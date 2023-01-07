@@ -10,12 +10,7 @@ const Admin = () => {
   const gradeArray = [];
   const teacherArray = [];
   const [currentGrade, setGrade] = useState('0');
-  const [teachers, setTeachers] = useState([
-    { first_name: 'Kate', last_name: 'A', time: 500 },
-    { first_name: 'Dhruv', last_name: 'B', time: 1 },
-    { first_name: 'Anna', last_name: 'L', time: 60 },
-    { first_name: 'Emily', last_name: 'C', time: 548974895 },
-  ]);
+  const [teachers, setTeachers] = useState([]);
 
   for (let i = 0; i <= 12; i++) {
     if (i === 0) {
@@ -65,8 +60,7 @@ const Admin = () => {
         params: { grade: currentGrade },
       });
       const teacherArray = response.data;
-      console.log(teacherArray);
-      // setTeachers(teacherArray);
+      setTeachers(teacherArray);
     } catch (err) {
       console.log(err);
     }

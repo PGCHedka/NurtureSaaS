@@ -3,25 +3,25 @@ import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Nav from '../components/Nav.jsx';
 import TeacherView from '../containers/TeacherView.jsx';
-import AdminView from '../containers/AdminView.jsx';
+import Admin from '../containers/AdminView.jsx';
 import Register from '../containers/Register.jsx';
 import LoginAdmin from '../containers/LoginAdmin.jsx';
 
 const App = () => {
   const userType = useSelector((state) => state.userInfo.type);
+  const logStatus = useSelector((state) => state.loggedIn);
   let currComponent;
   userType === 'admin'
-    ? (currComponent = <AdminView />)
+    ? (currComponent = <Admin />)
     : (currComponent = <TeacherView />);
   return (
     <div id='main'>
-      <Nav />
+      <Nav page={logStatus} />
       <Routes>
-        <Route path='/login' /> {/** login path */}
+        {/* <Route path='/login' /> * login path */}
         <Route path='/dashboard' element={currComponent} /> {/** main path */}
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<LoginAdmin />} /> {/** login path */}
-        {/* <Route path='/profile' /> * profile path -- teacher only */}
       </Routes>
     </div>
   );
