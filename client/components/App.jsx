@@ -20,10 +20,10 @@ const App = () => {
       <Nav page={logStatus} />
       <Routes>
         {/* <Route path='/login' /> * login path */}
-        <Route path='/' element={<LoginTeacher />} /> {/* login path*/}
-        <Route path='/dashboard' element={currComponent} /> {/* main path */}
+        <Route path='/' element={<LoginTeacher />} /> {/** login path */}
+        <Route path='/dashboard' element={currComponent} /> {/** main path */}
         <Route path='/register' element={<Register />} />
-        <Route path='/loginadmin' element={<LoginAdmin />} /> {/* login path */}
+        <Route path='/login' element={<LoginAdmin />} /> {/** login path */}
       </Routes>
     </div>
   );
