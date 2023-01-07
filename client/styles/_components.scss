@@ -7,9 +7,9 @@
   align-items: center;
   background-color: $color-secondary;
   color: $color-primary-background;
-  position: absolute;
-  width: 95vw;
-  top: 21px;
+  position: fixed;
+  width: 100vw;
+  top: 0px;
 }
 
 #dropdown { 

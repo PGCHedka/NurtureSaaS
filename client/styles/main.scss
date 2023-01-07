@@ -2,19 +2,21 @@
 
 #main {
   display: flex;
-
   justify-content: center;
   align-items: center;
-  height: 100vh;
   border-radius: 10px;
+  margin-top: 45px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-#admin {
+
+#admin, #home{
   box-shadow: rgba(18, 18, 20, 0.2) 0px 7px 29px 0px;
   display: flex;
   background-color: $color-secondary-background;
   height: 80vh;
   width: 95vw;
+  margin-top: 45px;
 
   #main-content {
     display: flex;
@@ -27,7 +29,8 @@
     background-color: rgb(187, 220, 209);
   }
 
-  #teach-container {
+
+  #teach-container, #student-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(600px, 700px));
     width: 100%;
@@ -53,7 +56,7 @@
     }
     .teacher-stat-flag {
       display: flex;
-      background-color: red;
+      background-color: rgb(250, 102, 102);
       margin: 20px;
       padding: 10px;
       flex-direction: row;
@@ -74,10 +77,14 @@
     }
   }
 }
-.grades {
+.grades, .class {
   font-size: 30px;
   margin: 5px;
   background-color: rgba(rgb(107, 107, 255), 0.15);
+}
+
+.class{
+  font-size: 16px;
 }
 
 .bar-chart-js {

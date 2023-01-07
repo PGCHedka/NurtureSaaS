@@ -37,6 +37,7 @@ const TeacherView = () => {
         const classes = response.data.map((currClass, i) => {
           return (
             <div 
+            className='class'
             key={`${currClass.name}${i}`}
             onClick={() => setCurrClass(currClass._id)}>
               {currClass.name}
@@ -59,9 +60,12 @@ const TeacherView = () => {
 
   return (
     <div id='home'>
-      <h1>Teacher View</h1>
-      <div className='main-sidebar'>{classArray}</div>
-      <div className='students'>{studentArray}</div>
+      <div className='main-sidebar'>
+        <h2>Classes</h2>
+        {classArray}</div>
+      <div id="main-content">
+        <div id='student-container'>{studentArray}</div>
+      </div>
     </div>
   );
 };
