@@ -49,18 +49,15 @@ const LoginAdmin = () => {
       <div className='cover'>
         <h2>Log into your Admin account</h2>
         <form onSubmit={handleSubmit} className='form'>
-          <label>
-            Enter your admin email:
-            <input onChange={handleEmail} type='text' placeholder='Email'></input>
-          </label>
-          <label>
-            Enter your password:
-            <input
-              onChange={handlePass}
-              type='text'
-              placeholder='Password'
-            ></input>
-          </label>
+          <label>Enter your admin email:</label>
+          <input onChange={handleEmail} type='text' placeholder='Email'></input>
+          <label>Enter your password:</label>
+          <input
+            onChange={handlePass}
+            type='text'
+            placeholder='Password'
+          ></input>
+          
           <input type='submit' className='submitBtn' value='Login'></input>
         </form>
         {loggedInStatus && <Navigate to='/dashboard' replace={true} />}
