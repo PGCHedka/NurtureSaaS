@@ -13,33 +13,33 @@ const ModalUpdate = ({ name, classes, data, type, trigger, setTrigger }) => {
     type === 'teacher' ? (
       <div id='popup'>
         <div id='popup-inner'>
-          <h2>Teacher: {name}</h2>
+          <h2>{name}</h2>
           <button className='close-btn' onClick={() => setTrigger(false)}>
             X
           </button>
           <div className='input-data'>
             <label>First Name:</label>
             <input id='first-name' type='text' placeholder='First Name' />
-            <div>
-              <label>Last Name:</label>
-              <input id='last-name' type='text' placeholder='Last Name' />
-            </div>
-            <div>
-              <label>Grades Teaching: </label>
-              <span name='grades-taught'>
-                <input id='grade-1' type='number' min='0' max='12' />
-                <input id='grade-2' type='number' min='0' max='12' />
-                <input id='grade-3' type='number' min='0' max='12' />
-              </span>
-            </div>
+            <label>Last Name:</label>
+            <input id='last-name' type='text' placeholder='Last Name' />
+            <label>Grades Teaching: </label>
+            <span name='grades-taught' className="centerMe">
+              <label>Grade 1:</label>
+              <input id='grade-1' type='number' min='0' max='12' />
+              <label>Grade 2:</label>
+              <input id='grade-2' type='number' min='0' max='12' />
+              <label>Grade 3:</label>
+              <input id='grade-3' type='number' min='0' max='12' />
+            </span>
             <label>Teaching Classes:</label>
-            <div id='classes-teach'>
+            <div id='classes-teach' className="centerMe">
               <select id='t-cls-1'>{classesArray}</select>
               <select id='t-cls-2'>{classesArray}</select>
               <select id='t-cls-3'>{classesArray}</select>
               <select id='t-cls-4'>{classesArray}</select>
               <select id='t-cls-5'>{classesArray}</select>
             </div>
+            <button className='submitBtn'>Submit</button>
           </div>
         </div>
       </div>
