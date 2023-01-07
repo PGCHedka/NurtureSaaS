@@ -131,7 +131,10 @@ const Admin = () => {
   }, [view]);
   return view === 'teachers' ? (
     <div id='admin'>
-      <div className='main-sidebar'>{gradeArray}</div>
+      <div className='main-sidebar'>
+        <h2>Grades</h2>
+        {gradeArray}
+      </div>
       <div id='main-content'>
         <div id='teach-container'>{teacherArray}</div>
         <div className='add-contain'>

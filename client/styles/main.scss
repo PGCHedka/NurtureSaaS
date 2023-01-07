@@ -1,46 +1,66 @@
+@import './_base.scss';
+
 #main {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  justify-items: center;
-  align-content: center;
   align-items: center;
-  height: 100vh;
+  border-radius: 10px;
+  margin-top: 45px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-#admin {
+
+#admin, #home{
+  border-radius: 10px;
+  box-shadow: rgba(105, 101, 101, 0.2) 0px 7px 10px 0px;
   display: flex;
-  flex-direction: row;
-  background-color: rgb(254, 199, 208);
+  border: 2px solid $color-secondary;
+  background-color: $color-secondary-background;
   height: 80vh;
   width: 95vw;
-  position: relative;
+  margin-top: 45px;
 
   #main-content {
     display: flex;
     flex-direction: column;
   }
+  
   .main-sidebar {
-    width: 400px;
+    h2{
+      text-align: center;
+    }
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 200px;
     height: 100%;
+    border-right: 2px solid $color-secondary;
     background-color: rgb(187, 220, 209);
   }
 
-  #teach-container {
+
+  #teach-container, #student-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(600px, 700px));
     width: 100%;
-
+    padding-top: 15px;
+    padding-left: 15px;
     .teach-img {
-      width: 90px;
-      height: 90px;
+      border: 4px solid #e4f3f9;
+      height: 100px;
+      width: 100px;
+      object-fit: cover;
+      overflow: hidden;
       border-radius: 50%;
       margin: 5px;
     }
     .teacher-stat {
+      border: 2px solid $color-secondary;
+      &:hover{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      }
       display: flex;
       height: 150px;
-      background-color: aquamarine;
+      background-color: rgb(186, 255, 232);
       margin: 20px;
       padding: 10px;
       flex-direction: row;
@@ -49,8 +69,13 @@
       border-radius: 20px;
     }
     .teacher-stat-flag {
+      border: 2px solid $color-secondary;
+      &:hover{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      }
       display: flex;
-      background-color: red;
+      height: 150px;
+      background-color: rgb(255, 182, 182);
       margin: 20px;
       padding: 10px;
       flex-direction: row;
@@ -59,9 +84,28 @@
       border-radius: 20px;
     }
     .student-data {
+      border: 2px solid $color-secondary;
+      &:hover{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      }
       display: flex;
       height: 150px;
-      background-color: aquamarine;
+      background-color: rgb(186, 255, 232);
+      margin: 20px;
+      padding: 10px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 20px;
+    }
+    .student-data-flag {
+      border: 2px solid $color-secondary;
+      &:hover{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      }
+      display: flex;
+      height: 150px;
+      background-color: rgb(255, 182, 182);
       margin: 20px;
       padding: 10px;
       flex-direction: row;
@@ -71,10 +115,14 @@
     }
   }
 }
-.grades {
+.grades, .class {
   font-size: 30px;
   margin: 5px;
-  background-color: rgba(rgb(107, 107, 255), 0.15);
+  background-color: rgba(rgb(143, 158, 165), 0.15);
+}
+
+.class{
+  font-size: 16px;
 }
 
 .bar-chart-js {

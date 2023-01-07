@@ -1,6 +1,6 @@
 #popup {
   position: fixed;
-  background: rgba(6, 24, 38, 0.5);
+  background: rgba(13, 45, 71, 0.5);
   top: 0;
   left: 0;
   width: 100%;
@@ -30,6 +30,11 @@
       align-self: center;
     }
     .data-container {
+      grid-area: main;
+      display: flex;
+      flex-direction: column;
+    }
+    .input-data {
       grid-area: main;
       display: flex;
       flex-direction: column;

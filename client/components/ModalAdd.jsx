@@ -7,7 +7,6 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
   for (let key in classes) {
     classesArray.push(<option value={key}>{key}</option>);
   }
-  console.log(type);
   const addData = (person) => {};
   return trigger ? (
     type === 'teacher' ? (

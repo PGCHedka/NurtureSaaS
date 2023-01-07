@@ -10,12 +10,11 @@ const Nav = () => {
   const [linkOptions, setLinkOptions] = useState([]);
   const [buttonPopup, setButtonPopup] = useState(false);
   const dispatch = useDispatch();
-
   useEffect(() => {
     userType === 'admin'
-      ? setLinkOptions(['View Students', 'View Teachers', 'Log Out'])
+      ? setLinkOptions(['View Students', 'View Teachers', 'Logout'])
       : setLinkOptions(['Assign', 'Logout']);
-  }, []);
+  }, [userType]);
 
   return loggedInStatus ? (
     <div id='navbar'>

@@ -101,24 +101,24 @@ INSERT INTO tool.classes VALUES (44, 'Finances 101', 3, 12, 'We talk about finan
 INSERT INTO tool.classes VALUES (45, 'Baking Baguettes', 5, 4, 'We talk about baguettes and stuff.');
 INSERT INTO tool.classes VALUES (4, 'Health Class', 10, 8, 'We talk about sex and stuff.');
 INSERT INTO tool.classes VALUES (5, 'Meditation', 11, 11, 'We meditate, stop asking questions.');
-INSERT INTO tool.classes VALUES (6, 'Greek Tragedies', 2, 8, 'We talk about Antigone a lot.');
+INSERT INTO tool.classes VALUES (6, 'Greek Tragedies', 3, 8, 'We talk about Antigone a lot.');
 INSERT INTO tool.classes VALUES (7, 'JavaScript 101', 4, 10, 'We talk about the web and stuff.');
 INSERT INTO tool.classes VALUES (8, 'Dangerous Insects', 8, 3, 'We talk about mosquitoes and stuff.');
 INSERT INTO tool.classes VALUES (9, 'First Aid', 8, 2, 'We talk about mending wounds and stuff.');
 INSERT INTO tool.classes VALUES (10, 'Overcoming Anxiety', 8, 4, 'We talk about breathing techniques and stuff.');
 INSERT INTO tool.classes VALUES (11, 'How to Overcome a Crisis', 11, 11, 'We talk about resilience and stuff.');
-INSERT INTO tool.classes VALUES (12, 'Declassified CIA Documents', 2, 8, 'We talk about conspiracies and stuff.');
+INSERT INTO tool.classes VALUES (12, 'Declassified CIA Documents', 4, 8, 'We talk about conspiracies and stuff.');
 INSERT INTO tool.classes VALUES (13, 'Mending Relationships', 10, 9, 'We talk about forgiveness and stuff.');
 INSERT INTO tool.classes VALUES (14, 'IT 101', 4, 7, 'We talk about computers and stuff.');
 INSERT INTO tool.classes VALUES (15, 'Databases', 5, 6, 'We talk about SQL and noSQL but not much else.');
 INSERT INTO tool.classes VALUES (16, 'Web Architecture', 4, 8, 'We talk about island architecture and stuff.');
 INSERT INTO tool.classes VALUES (17, 'How to be Present', 3, 11, 'We talk about reconnecting to the world and stuff.');
 INSERT INTO tool.classes VALUES (18, 'The Science of Sleep', 6, 10, 'We talk about sleep and stuff.');
-INSERT INTO tool.classes VALUES (19, 'Nutrition 101', 2, 8, 'We talk about cookies and stuff.');
+INSERT INTO tool.classes VALUES (19, 'Nutrition 101', 5, 8, 'We talk about cookies and stuff.');
 INSERT INTO tool.classes VALUES (20, 'How to Cope with Grief', 11, 11, 'We help you handle loss.');
 INSERT INTO tool.classes VALUES (21, 'Survival 101', 6, 8, 'We talk about hostile nature and stuff.');
 INSERT INTO tool.classes VALUES (22, 'Navigation', 6, 8, 'We talk about maps and stuff.');
-INSERT INTO tool.classes VALUES (23, 'Defense Against the Dark Arts', 10, 9, 'We talk about cars and stuff.');
+INSERT INTO tool.classes VALUES (23, 'Defense Against the Dark Arts', 10, 9, 'We talk about the dark side and stuff.');
 INSERT INTO tool.classes VALUES (24, 'The Science of Addiction', 11, 11, 'We talk about alcohol and drugs.');
 INSERT INTO tool.classes VALUES (25, 'Carpentry', 4, 7, 'We talk about birdhouses and stuff.');
 INSERT INTO tool.classes VALUES (26, 'Electronics 101', 10, 8, 'We talk about transistors and stuff.');
@@ -130,6 +130,58 @@ INSERT INTO tool.classes VALUES (31, 'Organic Chemistry', 8, 4, 'We talk about c
 INSERT INTO tool.classes VALUES (32, 'How to Save Money', 4, 10, 'We talk about 401ks and it is boring but important.');
 INSERT INTO tool.classes VALUES (33, 'How to Start a Business', 3, 12, 'We talk about LLCs.');
 
-INSERT INTO tool.class_assignments VALUES (4, 2, 3, 30, NOW());
-INSERT INTO tool.class_assignments VALUES (5, 2, 2, 20, NOW());
-INSERT INTO tool.class_assignments VALUES (6, 2, 3, 25, NOW());
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (6,8, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (1,1, 25);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (39, 3, 15);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (43, 9, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (44, 3, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (45, 5, 20);
+
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (4, 10, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (5, 11, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (7, 4, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (8,8, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (29,5, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (31,8, 20);
+
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (32, 4, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (33, 3, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (12, 4, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (19,5, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (26, 10, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (27,10, 20);
+
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (28,5, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (29,5, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (31,8, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (32, 4, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (11,11, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (15,5, 20);
+
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (9,8, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (10,8, 25);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (11,11, 15);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (12,4, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (12,4, 25);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (12,4, 25);
+
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (13,10, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (14,4, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (15,5, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (16,4, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (17,3, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (18,6, 20);
+
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (20, 11, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (21, 6, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (22,6, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (19,5, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (26, 10, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (27,10, 20);
+
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (28,5, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (29,5, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (30,5, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (32, 4, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (34,1, 20);
+INSERT INTO tool.class_assignments(class_id,teacher_id,time) VALUES (35,4, 20);

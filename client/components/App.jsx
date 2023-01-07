@@ -6,6 +6,7 @@ import TeacherView from '../containers/TeacherView.jsx';
 import Admin from '../containers/AdminView.jsx';
 import Register from '../containers/Register.jsx';
 import LoginAdmin from '../containers/LoginAdmin.jsx';
+import LoginTeacher from '../containers/LoginTeacher.jsx';
 
 const App = () => {
   const userType = useSelector((state) => state.userInfo.type);
@@ -18,10 +19,11 @@ const App = () => {
     <div id='main'>
       <Nav page={logStatus} />
       <Routes>
-        {/* <Route path='/login' /> * login path */}
+        <Route path='/' element={<LoginTeacher />} /> {/** login path */}
         <Route path='/dashboard' element={currComponent} /> {/** main path */}
         <Route path='/register' element={<Register />} />
-        <Route path='/' element={<LoginAdmin />} /> {/** login path */}
+        <Route path='/loginadmin' element={<LoginAdmin />} />{' '}
+        {/** login path */}
       </Routes>
     </div>
   );
