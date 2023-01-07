@@ -236,6 +236,21 @@ adminController.updateClass = async (req, res, next) => {
   }
 };
 
+adminController.getClasses = async (req, res, next) => {
+  try {
+    const q = `SELECT * FROM tool.classes`;
+    const response = await db.query(q);
+    res.locals = response;
+    return next();
+  } catch (err) {
+    return next({
+      log: `Error in adminController.updateClass: ${err}`,
+      status: 500,
+      message: 'That teacher is here to stay, sorry!',
+    });
+  }
+};
+
 adminController.deleteClass = async (req, res, next) => {
   const { id } = req.body;
   try {

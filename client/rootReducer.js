@@ -11,7 +11,7 @@ const initialState = {
     type: 'admin',
   },
   view: 'teachers',
-  loggedIn: true,
+  loggedIn: false,
   userID: '',
 };
 
@@ -27,7 +27,6 @@ const rootReducer = createReducer(initialState, (builder) =>
         : (state.view = 'teachers');
     })
     .addCase(userIDAction, (state, action) => {
-      console.log('userIDAction');
       state.userID = action.payload;
     })
 );

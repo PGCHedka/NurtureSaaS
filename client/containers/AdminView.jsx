@@ -49,6 +49,7 @@ const Admin = () => {
         <div key={teacher.first_name + teacher.last_name}>
           <ModalUpdate
             name={teacher.first_name + ' ' + teacher.last_name}
+            data={teacher}
             type='teacher'
             trigger={updatePopup}
             setTrigger={setUpdatePopup}
@@ -67,6 +68,7 @@ const Admin = () => {
         <div key={student.first_name + student.last_name}>
           <ModalUpdate
             name={student.first_name + ' ' + student.last_name}
+            data={student}
             type='student'
             trigger={addPopup}
             setTrigger={setUpdatePopup}
