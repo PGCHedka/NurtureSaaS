@@ -4,7 +4,8 @@ const db = require('../models/postgres');
 const teacherController = {};
 
 teacherController.getClasses = async (req, res, next) => {
-    const id = req.query.teacher_id; //teacher_id passed
+    console.log(req.params)
+    const id = req.params.id; //teacher_id passed
     try {
         const q = `SELECT * 
                     FROM tool.classes 
@@ -25,8 +26,7 @@ teacherController.getClasses = async (req, res, next) => {
 };
 
 teacherController.getStudents = async (req, res, next) => {
-    const id = req.query.class_id;   //class_id passed
-    console.log(id);
+    const id = req.params.id;   //class_id passed
     try {
         const q = `SELECT s._id, s.first_name, s._id, s.last_name
                     FROM tool.classes c
