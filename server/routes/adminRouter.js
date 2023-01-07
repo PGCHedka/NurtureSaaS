@@ -9,5 +9,66 @@ router.get('/teachers',
   }
 );
 
+router.post('/student', 
+  adminController.addStudent,
+  (req, res) => {
+    return res.status(200).json(res.locals);
+  }
+);
 
+router.patch('/student', 
+  adminController.updateStudent,
+  (req, res) => {
+    return res.status(200).json(res.locals);
+  }
+);
+
+router.post('/class',
+  adminController.addClass,
+  (req, res) => {
+    return res.status(200).json(res.locals);
+  }
+);
+
+router.patch('/student/class', 
+  adminController.updateStudentClasses,
+  (req, res) => {
+    return res.status(200).json(res.locals);
+  }
+);
+
+router.delete('/student',
+  adminController.deleteStudent,
+  (req, res) => {
+    return res.status(200).json(res.locals);
+  }
+);
+
+router.patch('/teacher', 
+  adminController.updateTeacher,
+  (req, res) => {
+    return res.status(200).json(res.locals);
+  }
+);
+
+router.delete('/teacher', 
+  adminController.deleteTeacher,
+  (req, res) => {
+    return res.status(200).json(res.locals);
+  }
+);
+
+router.patch('/class', 
+  adminController.updateClass,
+  (req, res) => {
+    return res.status(200).json(res.locals);
+  }
+);
+
+router.delete('/class', 
+  adminController.deleteClass,
+  (req, res) => {
+    return res.status(200).json(res.locals);
+  }
+);
 module.exports = router;
