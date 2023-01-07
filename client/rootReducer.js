@@ -18,8 +18,8 @@ const rootReducer = createReducer(initialState, (builder) =>
   builder.addCase(loginAction, (state, action) => {
     console.log('loginAction');
     state.loggedIn ? (state.loggedIn = false) : (state.loggedIn = true);
-  }),
-  builder.addCase(userIDAction, (state, action) => {
+  })
+  .addCase(userIDAction, (state, action) => {
     console.log('userIDAction');
     state.userID = action.payload;
   })
