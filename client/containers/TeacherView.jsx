@@ -3,13 +3,16 @@ import Nav from '../components/Nav.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import ModalAdd from '../components/ModalAdd.jsx';
 import Student from '../components/Student.jsx'
 
 const TeacherView = () => {
   const userID = useSelector((state) => state.userID);
   const [classArray, setClassArray] = useState();
   const [currClass, setCurrClass] = useState(0)
+  const [currClassName, setCurrClassName] = useState('');
   const [studentArray, setStudents] = useState()
+  const [addPopup, setAddPopup] = useState(false);
 
   const getStudents = async (currClass) => {
     try {
@@ -42,7 +45,11 @@ const TeacherView = () => {
             <div 
             className='class'
             key={`${currClass.name}${i}`}
-            onClick={() => setCurrClass(currClass._id)}>
+            id={currClass.name}
+            onClick={() => {
+              setCurrClass(currClass._id)
+              setCurrClassName(currClass.name);
+            }}>
               {currClass.name}
             </div>
           )
@@ -69,6 +76,22 @@ const TeacherView = () => {
       <div id="main-content">
         <h1>Students</h1>
         <div id='student-container'>{studentArray}</div>
+        <div className='add-contain'>
+          <ModalAdd
+            name={'Add Assignment'}
+            type='assignment'
+            classes={{name: currClassName, id: currClass, teacher_id: userID }}
+            trigger={addPopup}
+            setTrigger={setAddPopup}
+          />
+          <img
+            src={require('../images/add.png').default}
+            className='add-button'
+            onClick={() => {
+              setAddPopup(true);
+            }}
+          />
+        </div>
       </div>
     </div>
   );

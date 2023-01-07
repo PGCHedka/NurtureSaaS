@@ -13,7 +13,7 @@ const Nav = () => {
   useEffect(() => {
     userType === 'admin'
       ? setLinkOptions(['View Students', 'View Teachers', 'Logout'])
-      : setLinkOptions(['Assign', 'Logout']);
+      : setLinkOptions(['Logout']);
   }, [userType]);
 
   return loggedInStatus ? (
