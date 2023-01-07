@@ -39,15 +39,55 @@ adminController.addStudent = async (req, res, next) => {
     const q2 = `INSERT INTO tool.student_classes(student_id, class_id) VALUES (${vals})`;
     console.log(q2);
   } catch (err) {
-
+    return next({
+      log: `Error in adminController.addStudent: ${err}`,
+      status: 500,
+      message: 'Cannot add that student right now, sorry!',
+    });
   }
-}
+};
 
-// adminController.addClass = async(req, res, next) => {
-//   const { name, description, teacher_id, grade } = req.body;
-//   try{
+adminController.addClass = async(req, res, next) => {
+  const { name, description, teacher_id, grade } = req.body;
+  try {
+    const q = `INSERT INTO tool.classes(name, grade, teacher_id, description) VALUES ($1, $2, $3, $4)`;
+    const values = [name, grade, teacher_id, description];
+    const { rows } = await db.query(q, values);
+    console.log(rows);
+    return next();
+  } catch (err) {
+    return next({
+      log: `Error in adminController.addClass: ${err}`,
+      status: 500,
+      message: 'Cannot add that class right now, sorry!',
+    });
+  }
+};
 
-//   }
-// }
+adminController.updateStudentClasses = async(req, res, next) => {
+  const { firstName, classes } = req.body;
+  try {
 
+  } catch (err) {
+    return next({
+      log: `Error in adminController.addClass: ${err}`,
+      status: 500,
+      message: 'Cannot add that class right now, sorry!',
+    });
+  }
+};
+
+
+adminController.updateStudentClasses = async(req, res, next) => {
+  const { firstName, classes } = req.body;
+  try {
+
+  } catch (err) {
+    return next({
+      log: `Error in adminController.addClass: ${err}`,
+      status: 500,
+      message: 'Cannot add that class right now, sorry!',
+    });
+  }
+};
 module.exports = adminController;
