@@ -23,19 +23,30 @@ ChartJS.register(
 );
 
 const BarChart = ({ time }) => {
-  console.log((time / 60).toFixed(2));
+  const chartColors = {
+    red: '#fd5c63',
+    green: '#17a327'
+  }
+  const studentTime = (time / 60).toFixed(2);
+  const maxHours = 2;
+  let chartColor = chartColors.green;
+
+  if (studentTime > maxHours) {
+    chartColor = chartColors.red;
+  }
+
   const initialData = {
     labels: '% of Total Time',
     datasets: [
       {
         label: 'Total Homework Hours',
-        data: [(time / 60).toFixed(2)],
-        backgroundColor: '#fd5c63',
+        data: [studentTime],
+        backgroundColor: chartColor,
         stack: 'Stack 0',
       },
       {
         label: 'Max Recommended Hours',
-        data: [2],
+        data: [maxHours],
         backgroundColor: '#ebecec',
         stack: 'Stack 0',
       },
@@ -80,6 +91,7 @@ const BarChart = ({ time }) => {
       },
     },
   };
+
   return (
     <div className='bar-chart-container'>
       <Bar className='bar-chart-js' data={initialData} options={option} />

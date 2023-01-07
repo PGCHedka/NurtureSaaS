@@ -145,6 +145,7 @@ adminController.getStudents = async (req, res, next) => {
     let q = `SELECT * FROM tool.students `;
     if (grade) q += `WHERE grade = ${grade}`;
     const { rows } = await db.query(q);
+    console.log(rows)
     res.locals = rows;
     return next();
   } catch (err) {
