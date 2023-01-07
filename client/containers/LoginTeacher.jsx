@@ -15,11 +15,6 @@ const LoginTeacher = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-
-    const showForgotModal = () => {
-        <forgotModal />
-    }
-
     const handleEmail = (e) => {
         const value = e.target.value;
         setLoginEmail(value)
@@ -40,7 +35,7 @@ const LoginTeacher = () => {
             })
             .catch(err =>  {
                 console.log(err);
-                showForgotModal();
+                alert('Wrong email or password.');
             })
         setLoginPass('');
         setLoginEmail('');
@@ -62,7 +57,6 @@ const LoginTeacher = () => {
                     </label>
                     <input type="submit" value="Login"></input>
                 </form>
-                <button className="forgot" onClick={showForgotModal}>Forgot username or password?</button>
                 {loggedInStatus && (
                     <Navigate to= "/dashboard" replace = {true}/>
                 )}
