@@ -69,9 +69,10 @@ adminController.updateStudent = async(req, res, next) => {
   const { id, firstName, lastName, grade } = req.body;
   try {
     let q = `UPDATE tool.students SET `;
-    if(firstName) q += `first_name = '${firstName}', `
-    if(lastName) q += `last_name = '${lastName}', `
-    if(grade) q += `grade = ${grade} `;
+    if(firstName) q += `first_name = '${firstName}',`
+    if(lastName) q += `last_name = '${lastName}',`
+    if(grade) q += `grade = ${grade}`;
+    if(q[q.length - 1] === ',') q = q.slice(0, q.length - 1) + ' ';
     q += `WHERE _id = ${id}`;
     await db.query(q);
     return next();
@@ -87,14 +88,16 @@ adminController.updateStudent = async(req, res, next) => {
 adminController.updateStudentClasses = async(req, res, next) => {
   const { id, classes } = req.body;
   try {
-    let q = `DELETE FROM tool.student_classes WHERE student_id = ${id}`;
-    await db.query(q);
-    let q2 = `INSERT INTO tool.student_classes(student_id, class_id) VALUES `;
-    classes.forEach((x, i)=> {
-      if(i === classes.length - 1) q2 += `(${id}, ${x})`;
-      else q2 += `(${id}, ${x}),`;
-    });
-    const r = await db.query(q2);
+    if(classes){
+      let q = `DELETE FROM tool.student_classes WHERE student_id = ${id}`;
+      await db.query(q);
+      let q2 = `INSERT INTO tool.student_classes(student_id, class_id) VALUES `;
+      classes.forEach((x, i)=> {
+        if(i === classes.length - 1) q2 += `(${id}, ${x})`;
+        else q2 += `(${id}, ${x}),`;
+      });
+      const r = await db.query(q2);
+    }
     return next();
   } catch (err) {
     return next({
@@ -108,9 +111,8 @@ adminController.updateStudentClasses = async(req, res, next) => {
 adminController.deleteStudent = async(req, res, next) => {
   const { id } = req.body;
   try {
-    const q = `DELETE FROM tool.students WHERE _id = ${id} CASCADE`;
+    const q = `DELETE FROM tool.students WHERE _id = ${id}`;
     const r = await db.query(q);
-    console.log(r);
     return next();
   } catch (err) {
     return next({
@@ -121,10 +123,74 @@ adminController.deleteStudent = async(req, res, next) => {
   }
 };
 
-adminController.updateTeacher = async(req, res, next) => {
-  const { firstName, classes } = req.body;
+adminController.getStudent = async(req, res, next) => {
+  const id = Number(req.query.student_id);
+  console.log(req.query);
+  console.log(id);
   try {
-    
+    const q = `SELECT * FROM tool.students WHERE _id = ${id}`;
+    const { rows } = await db.query(q);
+    res.locals = rows[0];
+    return next();
+  } catch (err) {
+    return next({
+      log: `Error in adminController.getStudent: ${err}`,
+      status: 500,
+      message: 'We cannot find this student, sorry!',
+    });
+  }
+};
+
+adminController.getStudents = async(req, res, next) => {
+  const { grade } = req.body;
+  try {
+    const q = `SELECT * FROM tool.students `;
+    if(grade && grade !== 0) q += `WHERE grade = ${grade}`;
+    const { rows } = await db.query(q);
+    console.log(rows);
+    res.locals = rows;
+    return next();
+  } catch (err) {
+    return next({
+      log: `Error in adminController.getStudents: ${err}`,
+      status: 500,
+      message: 'We cannot find this student, sorry!',
+    });
+  }
+};
+
+adminController.getTeacher = async(req, res, next) => {
+  const id = Number(req.query.teacher_id);
+  console.log(id);
+  try {
+    const q = `SELECT * FROM tool.teachers WHERE _id = ${id}`;
+    const rows = await db.query(q);
+    res.locals = rows[0];
+    return next();
+  } catch (err) {
+    return next({
+      log: `Error in adminController.getTeacher: ${err}`,
+      status: 500,
+      message: 'We cannot find this teacher, sorry!',
+    });
+  }
+}; 
+
+adminController.updateTeacher = async(req, res, next) => {
+  const { id, firstName, lastName, grade1, grade2, grade3 } = req.body;
+  console.log(req.body);
+  try {
+    let q = `UPDATE tool.teachers SET `;
+    if(firstName) q += `first_name = '${firstName}',`
+    if(lastName) q += `last_name = '${lastName}', `
+    if(grade1) q += `grade_1 = ${grade1},`;
+    if(grade2) q += `grade_2 = ${grade2},`;
+    if(grade3) q += `grade_3 = ${grade3} `;
+    if(q[q.length - 1] === ',') q = q.slice(0, q.length - 1) + " ";
+    q += `WHERE _id = ${id}`;
+    console.log(q);
+    const r = await db.query(q);
+    return next();
   } catch (err) {
     return next({
       log: `Error in adminController.updateTeacher: ${err}`,
@@ -135,9 +201,13 @@ adminController.updateTeacher = async(req, res, next) => {
 };
 
 adminController.deleteTeacher = async(req, res, next) => {
-  const { firstName, classes } = req.body;
+  const { id } = req.body;
   try {
-    
+    const q = `DELETE FROM tool.teachers WHERE _id = $1`;
+    const vals = [id];
+    const r = await db.query(q, vals);
+    console.log(r);
+    return next();
   } catch (err) {
     return next({
       log: `Error in adminController.deleteTeacher: ${err}`,
@@ -148,9 +218,18 @@ adminController.deleteTeacher = async(req, res, next) => {
 };
 
 adminController.updateClass = async(req, res, next) => {
-  const { firstName, classes } = req.body;
+  const { id, name, description, teacher_id, grade } = req.body;
   try {
-    
+    let q = `UPDATE tool.classes SET `;
+    if(name) q += `name = '${name}',`
+    if(description) q += `description = '${description}', `
+    if(teacher_id) q += `teacher_id = ${teacher_id},`;
+    if(grade) q += `grade = ${grade},`;
+    if(q[q.length - 1] === ',') q = q.slice(0, q.length - 1) + " ";
+    q += `WHERE _id = ${id}`;
+    console.log(q);
+    const r = await db.query(q);
+    return next();
   } catch (err) {
     return next({
       log: `Error in adminController.updateClass: ${err}`,
@@ -161,9 +240,13 @@ adminController.updateClass = async(req, res, next) => {
 };
 
 adminController.deleteClass = async(req, res, next) => {
-  const { firstName, classes } = req.body;
+  const { id } = req.body;
   try {
-    
+    const q = `DELETE FROM tool.classes WHERE _id = $1`;
+    const vals = [id];
+    const r = await db.query(q, vals);
+    console.log(r);
+    return next();
   } catch (err) {
     return next({
       log: `Error in adminController.deleteClass: ${err}`,
