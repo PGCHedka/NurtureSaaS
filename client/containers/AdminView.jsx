@@ -76,7 +76,6 @@ const Admin = () => {
             trigger={updatePopup}
             setTrigger={setUpdatePopup}
           />
-          {console.log('minutes', student.minutes)}
           <Student
             name={student.first_name + ' ' + student.last_name}
             time={student.minutes}
