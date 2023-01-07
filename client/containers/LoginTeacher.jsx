@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
-import forgotModal from "./forgotModal.jsx";
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { loginAction, userIDAction, userTypeAction } from '../rootReducer.js';
@@ -44,7 +43,7 @@ const LoginTeacher = () => {
     return (
         <div>
             <div className="cover">
-                <h2>Log into your Teacher account</h2>
+                <h2>Login to your teacher account</h2>
                 <form onSubmit={handleSubmit} className='form'>
                     <label>Enter your teacher email:</label>
                     <input onChange={handleEmail} type="text" placeholder="Email"></input>
@@ -52,6 +51,7 @@ const LoginTeacher = () => {
                     <input onChange={handlePass} type="text" placeholder="Password"></input>
                     <input type="submit" className='submitBtn' value="Login"></input>
                     <button className='submitBtn' onClick={() => navigate("/loginadmin")}>Are you an admin?</button>
+                    <button className='submitBtn' onClick={() => navigate('/register')}>No account? Register</button>
                 </form>
                 {loggedInStatus && (
                     <Navigate to= "/dashboard" replace = {true}/>

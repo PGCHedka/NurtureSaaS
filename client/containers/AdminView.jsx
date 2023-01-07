@@ -108,18 +108,20 @@ const Admin = () => {
         params: { grade: currentGrade },
       });
       if (view === 'teachers') {
-        // if (!Object.keys(response.data).length) {
-        //   setTeachers([])
-        // } else {
+        if (!Object.keys(response.data).length) {
+          setTeachers([])
+        } else {
           const teacherArray = response.data;
           setTeachers(teacherGen(teacherArray));
+        }
       } else {
-        // if (!Object.keys(response.data).length) {
-        //   console.log('this is if theres no students')
-        //   setStudents([])
-        // } else {
+        if (!Object.keys(response.data).length) {
+          console.log('this is if theres no students')
+          setStudents([])
+        } else {
           const studentArray = response.data;
           setStudents(studentGen(studentArray));
+        }
       }
     } catch (err) {
       console.log(err);
@@ -145,7 +147,6 @@ const Admin = () => {
   }, []);
 
   useEffect(() => {
-    console.log(currentGrade)
     getData(currentGrade);
   }, [currentGrade]);
 
