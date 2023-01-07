@@ -16,4 +16,11 @@ router.get('/students/:id',
     }
 )
 
+router.post('/assignment/', 
+    teacherController.postAssignment,
+    (req, res) => {
+        return res.status(200).json(res.locals);
+    }
+)
+
 module.exports = router;

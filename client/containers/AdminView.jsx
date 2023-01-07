@@ -136,6 +136,7 @@ const Admin = () => {
         {gradeArray}
       </div>
       <div id='main-content'>
+        <h1>Teachers</h1>
         <div id='teach-container'>{teacherArray}</div>
         <div className='add-contain'>
           <ModalAdd
@@ -159,6 +160,7 @@ const Admin = () => {
     <div id='admin'>
       <div className='main-sidebar'>{gradeArray}</div>
       <div id='main-content'>
+        <h1>Students</h1>
         <div id='teach-container'>{studentArray}</div>
         <div className='add-contain'>
           <ModalAdd

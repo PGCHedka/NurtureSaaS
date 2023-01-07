@@ -67,6 +67,7 @@ const TeacherView = () => {
         <h2>Classes</h2>
         {classArray}</div>
       <div id="main-content">
+        <h1>Students</h1>
         <div id='student-container'>{studentArray}</div>
       </div>
     </div>
