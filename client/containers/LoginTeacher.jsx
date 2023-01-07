@@ -3,14 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import forgotModal from "./forgotModal.jsx";
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
-import { loginAction, userIDAction } from '../rootReducer.js';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { loginAction, userIDAction, userTypeAction } from '../rootReducer.js';
 
 
 const LoginTeacher = () => {
     const [loginEmail, setLoginEmail] = useState();
     const [loginPass, setLoginPass] = useState();
     const loggedInStatus = useSelector((state) => state.loggedIn)
+    const userType = useSelector((state) => state.userInfo.type)
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
 
@@ -34,6 +36,7 @@ const LoginTeacher = () => {
             .then(res => { 
                 dispatch(loginAction())
                 dispatch(userIDAction(res.data.id))
+                dispatch(userTypeAction('teacher'))
             })
             .catch(err =>  {
                 console.log(err);
@@ -44,23 +47,26 @@ const LoginTeacher = () => {
     }
 
     return (
-        <div className="cover">
-            <h2>Log into your teacher account</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Enter your teacher email
-                    <input onChange={handleEmail} type="text" placeholder="Email"></input>
-                </label>
-                <label>
-                    Enter your password
-                    <input onChange={handlePass} type="text" placeholder="Password"></input>
-                </label>
-                <input type="submit" value="Login"></input>
-            </form>
-            <button className="forgot" onClick={showForgotModal}>Forgot username or password?</button>
-            {loggedInStatus && (
-                <Navigate to= "/dashboard" replace = {true}/>
-            )}
+        <div>
+            <div><button onClick={() => navigate("/loginadmin")}>Are you an admin?</button></div>
+            <div className="cover">
+                <h2>Log into your teacher account</h2>
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        Enter your teacher email
+                        <input onChange={handleEmail} type="text" placeholder="Email"></input>
+                    </label>
+                    <label>
+                        Enter your password
+                        <input onChange={handlePass} type="text" placeholder="Password"></input>
+                    </label>
+                    <input type="submit" value="Login"></input>
+                </form>
+                <button className="forgot" onClick={showForgotModal}>Forgot username or password?</button>
+                {loggedInStatus && (
+                    <Navigate to= "/dashboard" replace = {true}/>
+                )}
+            </div>
         </div>
     )
 
