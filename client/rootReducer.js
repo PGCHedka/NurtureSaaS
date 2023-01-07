@@ -11,7 +11,7 @@ const initialState = {
     type: 'admin',
   },
   view: 'teachers',
-  loggedIn: false,
+  loggedIn: true,
   userID: '',
 };
 

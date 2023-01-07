@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Nav from '../components/Nav.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateFeed, addFriends } from '../rootReducer.js';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import Teacher from '../components/Teacher.jsx';
+import Student from '../components/Student.jsx';
+import ModalAdd from '../components/ModalAdd.jsx';
+import ModalUpdate from '../components/ModalUpdate.jsx';
 
 const Admin = () => {
   const gradeArray = [];
@@ -14,7 +14,8 @@ const Admin = () => {
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
   const view = useSelector((state) => state.view);
-
+  const [updatePopup, setUpdatePopup] = useState(false);
+  const [addPopup, setAddPopup] = useState(false);
   for (let i = 0; i <= 12; i++) {
     if (i === 0) {
       gradeArray.push(
@@ -45,21 +46,37 @@ const Admin = () => {
   if (view === 'teachers') {
     teachers.map((teacher) => {
       teacherArray.push(
-        <Teacher
-          name={teacher.first_name + ' ' + teacher.last_name}
-          time={teacher.minutes}
-          key={teacher.first_name + teacher.last_name}
-        />
+        <div key={teacher.first_name + teacher.last_name}>
+          <ModalUpdate
+            name={teacher.first_name + ' ' + teacher.last_name}
+            type='teacher'
+            trigger={updatePopup}
+            setTrigger={setUpdatePopup}
+          />
+          <Teacher
+            name={teacher.first_name + ' ' + teacher.last_name}
+            time={teacher.minutes}
+            trigger={setUpdatePopup}
+          />
+        </div>
       );
     });
   } else {
     students.map((student) => {
       studentArray.push(
-        <Teacher
-          name={teacher.first_name + ' ' + teacher.last_name}
-          time={teacher.minutes}
-          key={teacher.first_name + teacher.last_name}
-        />
+        <div key={student.first_name + student.last_name}>
+          <ModalUpdate
+            name={student.first_name + ' ' + student.last_name}
+            type='student'
+            trigger={addPopup}
+            setTrigger={setUpdatePopup}
+          />
+          <Student
+            name={student.first_name + ' ' + student.last_name}
+            time={100}
+            trigger={setUpdatePopup}
+          />
+        </div>
       );
     });
   }
@@ -76,6 +93,7 @@ const Admin = () => {
         setTeachers(teacherArray);
       } else {
         const studentArray = response.data;
+        console.log(studentArray);
         setStudents(studentArray);
       }
     } catch (err) {
@@ -89,12 +107,46 @@ const Admin = () => {
   return view === 'teachers' ? (
     <div id='admin'>
       <div className='main-sidebar'>{gradeArray}</div>
-      <div id='teach-container'>{teacherArray}</div>
+      <div id='main-content'>
+        <div id='teach-container'>{teacherArray}</div>
+        <div className='add-contain'>
+          <ModalAdd
+            name={'Add Teacher'}
+            type='teacher'
+            trigger={addPopup}
+            setTrigger={setAddPopup}
+          />
+          <img
+            src={require('../images/add.png').default}
+            className='add-button'
+            onClick={() => {
+              setAddPopup(true);
+            }}
+          />
+        </div>
+      </div>
     </div>
   ) : (
     <div id='admin'>
       <div className='main-sidebar'>{gradeArray}</div>
-      <div id='teach-container'>{studentArray}</div>
+      <div id='main-content'>
+        <div id='teach-container'>{studentArray}</div>
+        <div className='add-contain'>
+          <ModalAdd
+            name={'Add Student'}
+            type='student'
+            trigger={addPopup}
+            setTrigger={setAddPopup}
+          />
+          <img
+            src={require('../images/add.png').default}
+            className='add-button'
+            onClick={() => {
+              setAddPopup(true);
+            }}
+          />
+        </div>
+      </div>
     </div>
   );
 };

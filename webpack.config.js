@@ -25,7 +25,7 @@ module.exports = {
       publicPath: '/',
     },
     proxy: {
-      '/' : 'http://localhost:3000'
+      '/': 'http://localhost:3000',
     },
   },
   module: {
@@ -55,7 +55,11 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        type: 'asset',
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       },
     ],
   },

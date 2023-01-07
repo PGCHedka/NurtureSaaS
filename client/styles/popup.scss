@@ -36,15 +36,13 @@
     }
     .close-btn {
       position: fixed;
-      padding: 5px;
-      right: 4%;
-      top: 50px;
       background: transparent;
-      font-size: 20px;
+      z-index: 2;
+      font-size: 30px;
       border-style: none;
-      transform: translateX(-90%);
+      transform: translateX(-30px) translateY(-30px);
       &:hover {
-        font-size: 30px;
+        font-size: 40px;
         cursor: pointer;
       }
     }

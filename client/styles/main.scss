@@ -15,22 +15,27 @@
   height: 80vh;
   width: 95vw;
   position: relative;
+
+  #main-content {
+    display: flex;
+    flex-direction: column;
+  }
   .main-sidebar {
     width: 400px;
+    height: 100%;
     background-color: rgb(187, 220, 209);
   }
 
   #teach-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 500px));
+    grid-template-columns: repeat(auto-fill, minmax(600px, 700px));
     width: 100%;
 
     .teach-img {
-      width: 75px;
-      height: 75px;
-      max-width: 75px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      margin: 10px;
+      margin: 5px;
     }
     .teacher-stat {
       display: flex;
@@ -53,10 +58,47 @@
       justify-content: space-around;
       border-radius: 20px;
     }
+    .student-data {
+      display: flex;
+      height: 150px;
+      background-color: aquamarine;
+      margin: 20px;
+      padding: 10px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 20px;
+    }
   }
 }
 .grades {
   font-size: 30px;
   margin: 5px;
   background-color: rgba(rgb(107, 107, 255), 0.15);
+}
+
+.bar-chart-js {
+  display: flex;
+  align-items: center;
+  // max-height: 50px;
+  align-self: center;
+  border: none;
+  box-shadow: none;
+}
+.bar-chart-container {
+  height: 50px;
+  padding-bottom: 20px;
+}
+
+.add-contain {
+  display: flex;
+  margin-left: 20px;
+  margin-top: 10px;
+
+  .add-button {
+    height: 75px;
+    width: 75px;
+    border-radius: 10px;
+    // background-color: aliceblue;
+  }
 }
