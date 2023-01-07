@@ -32,13 +32,6 @@ const ModalUpdate = ({ name, classes, data, type, trigger, setTrigger }) => {
               <input id='grade-3' type='number' min='0' max='12' />
             </span>
             <label>Teaching Classes:</label>
-            <div id='classes-teach' className="centerMe">
-              <select id='t-cls-1'>{classesArray}</select>
-              <select id='t-cls-2'>{classesArray}</select>
-              <select id='t-cls-3'>{classesArray}</select>
-              <select id='t-cls-4'>{classesArray}</select>
-              <select id='t-cls-5'>{classesArray}</select>
-            </div>
             <button className='submitBtn'>Submit</button>
           </div>
         </div>
