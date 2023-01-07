@@ -43,19 +43,15 @@ const LoginTeacher = () => {
 
     return (
         <div>
-            <div><button onClick={() => navigate("/loginadmin")}>Are you an admin?</button></div>
             <div className="cover">
                 <h2>Log into your teacher account</h2>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Enter your teacher email
-                        <input onChange={handleEmail} type="text" placeholder="Email"></input>
-                    </label>
-                    <label>
-                        Enter your password
-                        <input onChange={handlePass} type="text" placeholder="Password"></input>
-                    </label>
-                    <input type="submit" value="Login"></input>
+                <form onSubmit={handleSubmit} className='form'>
+                    <label>Enter your teacher email:</label>
+                    <input onChange={handleEmail} type="text" placeholder="Email"></input>
+                    <label>Enter your password:</label>
+                    <input onChange={handlePass} type="text" placeholder="Password"></input>
+                    <input type="submit" className='submitBtn' value="Login"></input>
+                    <button className='submitBtn' onClick={() => navigate("/loginadmin")}>Are you an admin?</button>
                 </form>
                 {loggedInStatus && (
                     <Navigate to= "/dashboard" replace = {true}/>
