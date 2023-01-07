@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Modal from './Modal.jsx';
 import { useDispatch } from 'react-redux';
 import { loginAction, updateView } from '../rootReducer.js';
 import { useNavigate } from 'react-router-dom';
@@ -14,9 +13,6 @@ const DropDown = ({ options, handleChange }) => {
     setOpen(!open);
   };
 
-  const [buttonPopup, setButtonPopup] = useState(false);
-  const [currentAction, setAction] = useState('');
-
   //creates array of html button elements of each action
   const optionsArr = [];
   options.forEach((name) => {
@@ -27,9 +23,9 @@ const DropDown = ({ options, handleChange }) => {
           onClick={(e) => {
             handleMenu(name);
             handleChange(name);
-            setAction(name);
+            // setAction(name);
             if (name !== 'Log Out') {
-              setButtonPopup(true);
+              // setButtonPopup(true);
               dispatch(updateView(name));
             } else {
               dispatch(loginAction());
@@ -53,11 +49,6 @@ const DropDown = ({ options, handleChange }) => {
 
   return (
     <div id='dropdown'>
-      <Modal
-        action={currentAction}
-        trigger={buttonPopup}
-        setTrigger={setButtonPopup}
-      />
       <button className='dropdown-button' ref={ref} onClick={handleOpen}>
         Actions
       </button>
