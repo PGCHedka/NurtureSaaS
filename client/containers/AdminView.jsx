@@ -13,6 +13,7 @@ const Admin = () => {
   const [currentGrade, setGrade] = useState('0');
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
+  const [classes, setClasses] = useState({});
   const view = useSelector((state) => state.view);
   const [updatePopup, setUpdatePopup] = useState(false);
   const [addPopup, setAddPopup] = useState(false);
@@ -50,6 +51,7 @@ const Admin = () => {
           <ModalUpdate
             name={teacher.first_name + ' ' + teacher.last_name}
             data={teacher}
+            classes={classes}
             type='teacher'
             trigger={updatePopup}
             setTrigger={setUpdatePopup}
@@ -69,8 +71,9 @@ const Admin = () => {
           <ModalUpdate
             name={student.first_name + ' ' + student.last_name}
             data={student}
+            classes={classes}
             type='student'
-            trigger={addPopup}
+            trigger={updatePopup}
             setTrigger={setUpdatePopup}
           />
           <Student
@@ -102,10 +105,30 @@ const Admin = () => {
       console.log(err);
     }
   };
+  const getClasses = async () => {
+    try {
+      const response = await axios.get('/admin/classes');
+      const data = response.data.rows;
+      const obj = {};
+      for (let i = 0; i < data.length; i++) {
+        obj[data[i].name] = 1;
+      }
+      setClasses(obj);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getClasses();
+  }, []);
 
   useEffect(() => {
     getData(currentGrade);
   }, [currentGrade]);
+  useEffect(() => {
+    getData(currentGrade);
+  }, [view]);
   return view === 'teachers' ? (
     <div id='admin'>
       <div className='main-sidebar'>
@@ -118,6 +141,7 @@ const Admin = () => {
           <ModalAdd
             name={'Add Teacher'}
             type='teacher'
+            classes={classes}
             trigger={addPopup}
             setTrigger={setAddPopup}
           />

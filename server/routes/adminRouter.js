@@ -55,10 +55,7 @@ router.get('/teacher', adminController.getTeacher, (req, res) => {
   return res.status(200).json(res.locals);
 });
 
-router.get('/classes'),
-  adminController.getClasses,
-  (req, res) => {
-    return res.status(200).json(res.locals);
-  };
-
+router.get('/classes', adminController.getClasses, (req, res) => {
+  return res.status(200).json(res.locals);
+});
 module.exports = router;

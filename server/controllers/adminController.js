@@ -239,6 +239,7 @@ adminController.updateClass = async (req, res, next) => {
 adminController.getClasses = async (req, res, next) => {
   try {
     const q = `SELECT * FROM tool.classes`;
+    console.log(q);
     const response = await db.query(q);
     res.locals = response;
     return next();
