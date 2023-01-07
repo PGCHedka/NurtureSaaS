@@ -8,17 +8,18 @@ import Student from '../components/Student.jsx'
 const TeacherView = () => {
   const userID = useSelector((state) => state.userID);
   const [classArray, setClassArray] = useState();
-  const [currClass, setCurrClass] = useState()
+  const [currClass, setCurrClass] = useState(0)
   const [studentArray, setStudents] = useState()
 
   const getStudents = async (currClass) => {
     try {
-      const response = await axios.get('teacher/students', {
+      const response = await axios.get(`teacher/students/${currClass}`, {
         params: { class: currClass },
       });
-      console.log(response.data)
+      console.log('this is student data', response.data)
       const students = response.data.map(student => {
-        return <Student />
+        console.log(student)
+        return <Student name={student.first_name} time={student.minutes}/>
       })
       setStudents(students);
     } catch (err) {
@@ -29,16 +30,15 @@ const TeacherView = () => {
   useEffect(() => {
     const getClasses = async (userID) => {
       try {
-        const response = await axios.get('teacher/classes', {
+        const response = await axios.get(`teacher/classes/${userID}`, {
             params: { id: userID },
           }
         )
-        console.log(response.data)
         const classes = response.data.map((currClass, i) => {
           return (
             <div 
             key={`${currClass.name}${i}`}
-            onClick={() => setCurrClass(currClass.id)}>
+            onClick={() => setCurrClass(currClass._id)}>
               {currClass.name}
             </div>
           )

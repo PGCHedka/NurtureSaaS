@@ -28,7 +28,6 @@ const rootReducer = createReducer(initialState, (builder) =>
         : (state.view = 'teachers');
     })
     .addCase(userIDAction, (state, action) => {
-      console.log('userIDAction');
       state.userID = action.payload;
     })
     .addCase(userTypeAction, (state, action) => {
