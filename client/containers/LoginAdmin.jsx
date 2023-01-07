@@ -42,18 +42,18 @@ const LoginAdmin = () => {
     return (
         <div className="cover">
             <h2>Log into your Admin account</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="form">
                 <label>
-                     Enter your admin email
+                     Enter your admin email: 
                     <input onChange={handleEmail} type="text" placeholder="Email"></input>
                 </label>
                 <label>
-                     Enter your password
+                     Enter your password: 
                     <input onChange={handlePass} type="text" placeholder="Password"></input>
                 </label>
-                <input type="submit" value="Login"></input>
+                <input type="submit" className="submitBtn" value="Login"></input>
             </form>
-            <button className="forgot" onClick={showForgotModal}>Forgot username or password?</button>
+            <button className="goToLogin" onClick={showForgotModal}>Forgot username or password?</button>
             {loggedInStatus && (
                 <Navigate to= "/dashboard" replace = {true}/>
             )}
