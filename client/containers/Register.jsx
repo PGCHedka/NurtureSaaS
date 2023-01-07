@@ -6,8 +6,8 @@ import '../styles/_layout.scss';
 const Register = () => {
 
     const navigate = useNavigate();
-    const handleGoToAdminLogin = useCallback(() => navigate('/admin_login', {replace: true}));
-    const handleGoToTeacherLogin = useCallback(() => navigate('/teacher_login', {replace: true}));
+    const handleGoToAdminLogin = useCallback(() => navigate('/loginadmin', {replace: true}));
+    const handleGoToTeacherLogin = useCallback(() => navigate('/', {replace: true}));
     let [role, setRole] = useState('admin');
 
     const handleSubmit = async (e) => {

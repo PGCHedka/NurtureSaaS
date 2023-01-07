@@ -22,8 +22,7 @@ const App = () => {
         <Route path='/' element={<LoginTeacher />} /> {/** login path */}
         <Route path='/dashboard' element={currComponent} /> {/** main path */}
         <Route path='/register' element={<Register />} />
-        <Route path='/loginadmin' element={<LoginAdmin />} />{' '}
-        {/** login path */}
+        <Route path='/loginadmin' element={<LoginAdmin />} />{/** login path */}
       </Routes>
     </div>
   );

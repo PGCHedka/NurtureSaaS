@@ -7,47 +7,18 @@ import ModalAdd from '../components/ModalAdd.jsx';
 import ModalUpdate from '../components/ModalUpdate.jsx';
 
 const Admin = () => {
-  console.log(classes);
-  const gradeArray = [];
-  const teacherArray = [];
-  const studentArray = [];
+  const [grades, setGrades] = useState([])
   const [currentGrade, setGrade] = useState('0');
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
   const [classes, setClasses] = useState({});
-  const view = useSelector((state) => state.view);
   const [updatePopup, setUpdatePopup] = useState(false);
   const [addPopup, setAddPopup] = useState(false);
-  for (let i = 0; i <= 12; i++) {
-    if (i === 0) {
-      gradeArray.push(
-        <div
-          className='grades'
-          key='unassigned'
-          onClick={() => {
-            setGrade(0);
-          }}
-        >
-          Unassigned
-        </div>
-      );
-    } else {
-      gradeArray.push(
-        <div
-          className='grades'
-          key={'grade' + i}
-          onClick={() => {
-            setGrade(i);
-          }}
-        >
-          Grade {i}
-        </div>
-      );
-    }
-  }
-  if (view === 'teachers') {
-    teachers.map((teacher) => {
-      teacherArray.push(
+  const view = useSelector((state) => state.view);
+
+  const teacherGen = (teachers) => {
+    return teachers.map((teacher) => {
+      return (
         <div key={teacher.first_name + teacher.last_name}>
           <ModalUpdate
             name={teacher.first_name + ' ' + teacher.last_name}
@@ -63,12 +34,17 @@ const Admin = () => {
             trigger={setUpdatePopup}
           />
         </div>
-      );
+      )
     });
-  } else {
-    students.map((student) => {
-      studentArray.push(
-        <div key={student.first_name + student.last_name}>
+  };
+
+  const studentGen = (students) => {
+    return students.map((student, i) => {
+      if (student.minutes === null) {
+        student.minutes = 0;
+      }
+      return (
+        <div key={student.first_name + student.last_name + student.minutes + student.grade + i}>
           <ModalUpdate
             name={student.first_name + ' ' + student.last_name}
             data={student}
@@ -77,16 +53,52 @@ const Admin = () => {
             trigger={updatePopup}
             setTrigger={setUpdatePopup}
           />
-          {console.log('minutes', student.minutes)}
           <Student
             name={student.first_name + ' ' + student.last_name}
             time={student.minutes}
             trigger={setUpdatePopup}
           />
         </div>
-      );
+      )
     });
   }
+  
+  useEffect(() => {
+    const gradeArray = [];
+    for (let i = 0; i <= 12; i++) {
+      if (i === 0) {
+        gradeArray.push(
+          <div
+            className='grades'
+            key='unassigned'
+            onClick={() => {
+              setGrade(0);
+            }}
+          >
+            Unassigned
+          </div>
+        );
+      } else {
+        gradeArray.push(
+          <div
+            className='grades'
+            key={'grade' + i}
+            onClick={() => {
+              setGrade(i);
+            }}
+          >
+            Grade {i}
+          </div>
+        );
+      }
+    }
+    setGrades(gradeArray);
+    if (view === 'teachers') {
+      setTeachers(teacherGen(teachers))
+    } else {
+      setStudents(studentGen(students))
+    }
+  }, []);
 
   //get request for all teachers, should return an array of all teachers for that grade
 
@@ -96,17 +108,26 @@ const Admin = () => {
         params: { grade: currentGrade },
       });
       if (view === 'teachers') {
-        const teacherArray = response.data;
-        setTeachers(teacherArray);
+        if (!Object.keys(response.data).length) {
+          setTeachers([])
+        } else {
+          const teacherArray = response.data;
+          setTeachers(teacherGen(teacherArray));
+        }
       } else {
-        const studentArray = response.data;
-        console.log('studentarray', studentArray);
-        setStudents(studentArray);
+        if (!Object.keys(response.data).length) {
+          console.log('this is if theres no students')
+          setStudents([])
+        } else {
+          const studentArray = response.data;
+          setStudents(studentGen(studentArray));
+        }
       }
     } catch (err) {
       console.log(err);
     }
   };
+
   const getClasses = async () => {
     try {
       const response = await axios.get('/admin/classes');
@@ -128,18 +149,20 @@ const Admin = () => {
   useEffect(() => {
     getData(currentGrade);
   }, [currentGrade]);
+
   useEffect(() => {
     getData(currentGrade);
   }, [view]);
+
   return view === 'teachers' ? (
     <div id='admin'>
       <div className='main-sidebar'>
         <h2>Grades</h2>
-        {gradeArray}
+        {grades}
       </div>
       <div id='main-content'>
         <h1>Teachers</h1>
-        <div id='teach-container'>{teacherArray}</div>
+        <div id='teach-container'>{teachers}</div>
         <div className='add-contain'>
           <ModalAdd
             name={'Add Teacher'}
@@ -160,10 +183,13 @@ const Admin = () => {
     </div>
   ) : (
     <div id='admin'>
-      <div className='main-sidebar'>{gradeArray}</div>
+      <div className='main-sidebar'>
+        <h2>Grades</h2>
+        {grades}
+      </div>
       <div id='main-content'>
         <h1>Students</h1>
-        <div id='teach-container'>{studentArray}</div>
+        <div id='teach-container'>{students}</div>
         <div className='add-contain'>
           <ModalAdd
             name={'Add Student'}
