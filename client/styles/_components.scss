@@ -1,18 +1,18 @@
+@import './_base.scss';
+
 #navbar {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(195, 195, 250);
+  background-color: $color-secondary;
+  color: $color-primary-background;
   position: absolute;
   width: 95vw;
-  top: 20px;
-  height: 150px;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  top: 21px;
 }
 
-#dropdown {
+#dropdown { 
   .dropdown-button {
     background-color: rgba(white, 0.9);
     color: black;
