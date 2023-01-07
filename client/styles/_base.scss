@@ -15,3 +15,60 @@ $font-primary-name: 'Raleway';
 $font-secondary-url: 'https://fonts.googleapis.com/css2?family=Raleway&family=Roboto+Slab:wght@500&display=swap';
 $font-secondary-name: 'Roboto Slab';
 
+input[type=text]{
+  padding: 4px;
+  border: none;
+  border-radius: 5px;
+  outline: 2px solid rgb(169, 163, 163);
+  &:hover, &:focus{
+    outline: 2px solid $color-secondary;
+  }
+  margin: 2px;
+}
+
+select {
+  outline: 2px solid rgb(169, 163, 163);
+  border: none;
+  border-radius: 3px;
+  padding: 3px;
+  font-size: 14px;
+  margin: 5px;
+  &:hover, &:focus{
+    outline: 2px solid $color-secondary;
+  }
+}
+input[type=number]{
+  padding: 3px;
+  outline: 2px solid rgb(169, 163, 163);
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  &:hover, &:focus{
+    outline: 2px solid $color-secondary;
+  }
+}
+
+.submitBtn {
+  margin-top: 1rem;
+  padding: 5px;
+  font-size: 16px;
+  color: $color-primary-background;
+  background-color: $color-secondary;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  &:hover{
+      cursor: pointer;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  }
+  &:active{
+      color: $color-secondary;
+      background-color: $color-primary-background;
+  }
+}
+
+label{
+  font-size: 16px;
+  font-family: sans-serif;
+  padding: 5px;
+}

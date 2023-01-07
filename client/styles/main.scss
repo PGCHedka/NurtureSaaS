@@ -16,7 +16,7 @@
   display: flex;
   border: 2px solid $color-secondary;
   background-color: $color-secondary-background;
-  height: 80vh;
+  min-height: 80vh;
   width: 95vw;
   margin-top: 45px;
 
@@ -32,7 +32,7 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     width: 200px;
-    height: 100%;
+    min-height: 100%;
     border-right: 2px solid $color-secondary;
     background-color: rgb(187, 220, 209);
   }
@@ -56,6 +56,7 @@
     .teacher-stat {
       border: 2px solid $color-secondary;
       &:hover{
+        cursor: pointer;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
       }
       display: flex;
@@ -71,6 +72,7 @@
     .teacher-stat-flag {
       border: 2px solid $color-secondary;
       &:hover{
+        cursor: pointer;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
       }
       display: flex;
@@ -86,6 +88,7 @@
     .student-data {
       border: 2px solid $color-secondary;
       &:hover{
+        cursor: pointer;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
       }
       display: flex;
@@ -101,6 +104,7 @@
     .student-data-flag {
       border: 2px solid $color-secondary;
       &:hover{
+        cursor: pointer;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
       }
       display: flex;
@@ -116,6 +120,10 @@
   }
 }
 .grades, .class {
+  &:hover{
+    cursor: pointer;
+    background-color: rgba(rgb(229, 233, 235), 0.25);
+  }
   font-size: 30px;
   margin: 5px;
   background-color: rgba(rgb(143, 158, 165), 0.15);

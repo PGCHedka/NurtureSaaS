@@ -7,7 +7,7 @@ adminController.getTeachers = async (req, res, next) => {
   try {
     const q = `SELECT t._id, t.first_name, t.last_name, SUM(c.time) AS "minutes"
        FROM tool.class_assignments c 
-       JOIN tool.teachers t 
+       FULL OUTER JOIN tool.teachers t 
        ON c.teacher_id = t._id 
        WHERE c.date = NOW()::DATE
        AND t.grade_1 = ${grade} OR t.grade_2 = ${grade} OR t.grade_3 = ${grade}
@@ -239,6 +239,7 @@ adminController.updateClass = async (req, res, next) => {
 adminController.getClasses = async (req, res, next) => {
   try {
     const q = `SELECT * FROM tool.classes`;
+    console.log(q);
     const response = await db.query(q);
     res.locals = response;
     return next();

@@ -35,11 +35,11 @@ const LoginAdmin = () => {
         console.log(res.data.id);
         dispatch(loginAction());
         dispatch(userIDAction(res.data.id));
-        dispatch(userTypeAction('admin'))
+        dispatch(userTypeAction('admin'));
       })
       .catch((err) => {
         console.log(err);
-          alert('Wrong email or password.');
+        alert('Wrong email or password.');
       });
   };
 
@@ -56,9 +56,10 @@ const LoginAdmin = () => {
             type='text'
             placeholder='Password'
           ></input>
-          
           <input type='submit' className='submitBtn' value='Login'></input>
-          <button className='submitBtn' onClick={() => navigate("/")}>Are you a teacher?</button>
+          <button className='submitBtn' onClick={() => navigate('/')}>
+            Are you a teacher?
+          </button>
         </form>
         {loggedInStatus && <Navigate to='/dashboard' replace={true} />}
       </div>

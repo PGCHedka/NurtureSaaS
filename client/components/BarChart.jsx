@@ -31,22 +31,18 @@ const BarChart = ({ time }) => {
         label: 'Total Homework Hours',
         data: [(time / 60).toFixed(2)],
         backgroundColor: '#fd5c63',
-        // borderColor: 'rgb(187, 220, 209)',
         stack: 'Stack 0',
       },
       {
         label: 'Max Recommended Hours',
         data: [2],
         backgroundColor: '#ebecec',
-        // borderColor: 'rgb(52,162,235)',
         stack: 'Stack 0',
       },
     ],
   };
-  const [barChartData, setBarChartData] = useState(initialData);
   ChartJS.defaults.datasets.bar.barThickness = 75;
   ChartJS.defaults.scale.display = false;
-  console.log(ChartJS.defaults);
   const option = {
     indexAxis: 'y',
     elements: {
@@ -86,7 +82,7 @@ const BarChart = ({ time }) => {
   };
   return (
     <div className='bar-chart-container'>
-      <Bar className='bar-chart-js' data={barChartData} options={option} />
+      <Bar className='bar-chart-js' data={initialData} options={option} />
     </div>
   );
 };

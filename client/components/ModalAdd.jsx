@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from '../styles/popup.scss';
 
-const ModalAdd = ({ name, type, trigger, setTrigger }) => {
-  //userdata should include display name
-  console.log(type);
+const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
+  const classesArray = [<option value='None'>None</option>];
+  for (let key in classes) {
+    classesArray.push(<option value={key}>{key}</option>);
+  }
   const addData = (person) => {};
   return trigger ? (
     type === 'teacher' ? (
@@ -15,15 +17,24 @@ const ModalAdd = ({ name, type, trigger, setTrigger }) => {
             X
           </button>
           <div className='input-data'>
-            <input type='text' placeholder='Student Name' />
-            <input type='number' placeholder='Grade' min='0' max='12' />
-            <input type='number' placeholder='Grade' min='0' max='12' />
-            <input type='number' placeholder='Grade' min='0' max='12' />
-            <input type='text' placeholder='Class1' />
-            <input type='text' placeholder='Class2' />
-            <input type='text' placeholder='Class3' />
-            <input type='text' placeholder='Class3' />
-            <input type='text' placeholder='Class3' />
+            <label>First Name:</label>
+            <input id='first-name' type='text' placeholder='First Name' />
+            <div>
+              <label>Last Name:</label>
+              <input id='last-name' type='text' placeholder='Last Name' />
+            </div>
+            <label>Grade: </label>
+            <input type='number' min='0' max='12' />
+            <div>
+              <label>Classes:</label>
+              <div id='classes-teach'>
+                <select id='t-cls-1'>{classesArray}</select>
+                <select id='t-cls-2'>{classesArray}</select>
+                <select id='t-cls-3'>{classesArray}</select>
+                <select id='t-cls-4'>{classesArray}</select>
+                <select id='t-cls-5'>{classesArray}</select>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -35,11 +46,20 @@ const ModalAdd = ({ name, type, trigger, setTrigger }) => {
             X
           </button>
           <div className='input-data'>
-            <input type='text' placeholder='Student Name' />
-            <input type='number' placeholder='Grade' min='0' max='12' />
-            <input type='text' placeholder='Class1' />
-            <input type='text' placeholder='Class2' />
-            <input type='text' placeholder='Class3' />
+            <label>First Name:</label>
+            <input id='first-name' type='text' placeholder='First Name' />
+            <label>Last Name:</label>
+            <input id='last-name' type='text' placeholder='Last Name' />
+            <label>Grade: </label>
+            <input type='number' min='0' max='12' />
+            <label>Classes:</label>
+            <div id='classes-teach'>
+              <select id='s-cls-1'>{classesArray}</select>
+              <select id='s-cls-2'>{classesArray}</select>
+              <select id='s-cls-3'>{classesArray}</select>
+              <select id='s-cls-4'>{classesArray}</select>
+              <select id='s-cls-5'>{classesArray}</select>
+            </div>
           </div>
         </div>
       </div>
