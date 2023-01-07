@@ -9,6 +9,7 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
     const grade1 = document.getElementById('grade1').value;
     const grade2 = document.getElementById('grade2').value;
     const grade3 = document.getElementById('grade3').value;
+    axios.post('teac')
   }
 
   const classesArray = [<option value='None'>None</option>];
