@@ -7,6 +7,7 @@ import ModalAdd from '../components/ModalAdd.jsx';
 import ModalUpdate from '../components/ModalUpdate.jsx';
 
 const Admin = () => {
+  console.log(classes);
   const gradeArray = [];
   const teacherArray = [];
   const studentArray = [];
@@ -112,7 +113,7 @@ const Admin = () => {
       const data = response.data.rows;
       const obj = {};
       for (let i = 0; i < data.length; i++) {
-        obj[data[i].name] = 1;
+        obj[data[i].name] = data[i]._id;
       }
       setClasses(obj);
     } catch (err) {
@@ -167,6 +168,7 @@ const Admin = () => {
           <ModalAdd
             name={'Add Student'}
             type='student'
+            classes={classes}
             trigger={addPopup}
             setTrigger={setAddPopup}
           />

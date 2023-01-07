@@ -31,7 +31,6 @@ const ModalUpdate = ({ name, classes, data, type, trigger, setTrigger }) => {
               <label>Grade 3:</label>
               <input id='grade-3' type='number' min='0' max='12' />
             </span>
-            <label>Teaching Classes:</label>
             <button className='submitBtn'>Submit</button>
           </div>
         </div>

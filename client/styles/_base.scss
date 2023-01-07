@@ -15,7 +15,7 @@ $font-primary-name: 'Raleway';
 $font-secondary-url: 'https://fonts.googleapis.com/css2?family=Raleway&family=Roboto+Slab:wght@500&display=swap';
 $font-secondary-name: 'Roboto Slab';
 
-input[type=text]{
+input[type=text], input[type=email]{
   padding: 4px;
   border: none;
   border-radius: 5px;
