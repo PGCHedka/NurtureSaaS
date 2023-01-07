@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import {Routes, Route} from 'react-router-dom';
 import forgotModal from "./forgotModal.jsx";
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
+import { loginAction } from '../rootReducer.js';
 
 
 const LoginAdmin = () => {
     const [loginEmail, setLoginEmail] = useState();
     const [loginPass, setLoginPass] = useState();
     const [authenticated, setAuthenticated] = useState(false);
+    const loggedInStatus = useSelector((state) => state.loggedIn)
+    const dispatch = useDispatch();
+
 
     const showForgotModal = () => {
         <forgotModal/>
@@ -27,7 +32,7 @@ const LoginAdmin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('auth/admin/login', { email: loginEmail, password: loginPass })
-            .then(res => setAuthenticated(true))
+            .then(res => dispatch(loginAction()))
             .catch(err =>  {
                 console.log(err);
                 showForgotModal();
@@ -49,7 +54,7 @@ const LoginAdmin = () => {
                 <input type="submit" value="Login"></input>
             </form>
             <button className="forgot" onClick={showForgotModal}>Forgot username or password?</button>
-            {authenticated && (
+            {loggedInStatus && (
                 <Navigate to= "/dashboard" replace = {true}/>
             )}
         </div>
