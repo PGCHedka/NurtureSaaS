@@ -67,15 +67,18 @@ teacherController.getStudents = async (req, res, next) => {
 }
 
 teacherController.postAssignment = async (req, res, next) => {
-    console.log(req.body)
+    //console.log(req.body)
     const { class_id, teacher_id, time } = req.body;
     try {
-        const q = `INSERT INTO tool.class_assignments ca (ca.class_id, ca.teacher_id, ca.time, ca.date)
-                    VALUES ($1, $2, $3, $4)`;
-        const date = Date.now();
-        const values = [class_id, teacher_id, time, date];
+        const q = `INSERT INTO tool.class_assignments (class_id, teacher_id, time)
+                    VALUES ($1, $2, $3)
+                    RETURNING *`;
+        
+        const values = [class_id, teacher_id, time];
         const { rows } = await db.query(q, values);
-        console.log(rows);
+        console.log('rows: ', rows);
+        res.locals = rows[0];
+        return next();
     } catch (err) {
         console.log(err);
         return next({
