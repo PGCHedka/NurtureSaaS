@@ -21,7 +21,7 @@ const TeacherView = () => {
       } else {
         const students = response.data.map(student => {
           console.log(student)
-          return <Student name={student.first_name} time={student.minutes}/>
+          return <Student key={student.first_name + student.last_name + student._id} name={student.first_name} time={student.minutes}/>
         })
         setStudents(students);
       }

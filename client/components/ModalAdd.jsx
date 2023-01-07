@@ -3,8 +3,8 @@ import axios from 'axios';
 import styles from '../styles/popup.scss';
 
 const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
-  console.log(classes);
   const addStudent = async () => {
+    setTrigger(false)
     const student = {};
     student.firstName = document.getElementById('first-name').value;
     student.lastName = document.getElementById('last-name').value;
@@ -16,23 +16,29 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
     const class4 = classes[document.getElementById('s-cls-4').value];
     const class5 = classes[document.getElementById('s-cls-5').value];
     if(class1) student.classes.push(class1);
-    if(class2) student.classes.push(class1);
-    if(class3) student.classes.push(class1);
-    if(class4) student.classes.push(class1);
-    if(class5) student.classes.push(class1);
+    if(class2) student.classes.push(class2);
+    if(class3) student.classes.push(class3);
+    if(class4) student.classes.push(class4);
+    if(class5) student.classes.push(class5);
     const response = await axios.post(`admin/student`, {
-      ...student
+      data: { ...student}
     });
     console.log(response);
   }
 
   const inviteTeacher = async() => {
-    const email = document.getElementById('email').value;
-    console.log(email);
-    const response = await axios.post(`admin/teacher/invite`, {
-      email: email
-    });
-    console.log(response);
+    setTrigger(false)
+    try {
+      const email = document.getElementById('email').value;
+      console.log(email);
+      const response = await axios.post(`admin/teacher/invite`, {
+        email: email
+      });
+    }
+    catch(err) {
+      console.log(err)
+    }
+    
   }
 
   const classesArray = [<option value='None'>None</option>];
