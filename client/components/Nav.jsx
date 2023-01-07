@@ -20,11 +20,13 @@ const Nav = () => {
       : setLinkOptions(['Assign', 'Logout']);
   }, []);
 
-  return (
+  return loggedInStatus ? (
     <div id='navbar'>
       <h1 id='nav-title'>PGCHedka</h1>
       <DropDown options={linkOptions} handleChange={(name) => {}} />
     </div>
+  ) : (
+    <div id='navbar'></div>
   );
 };
 
