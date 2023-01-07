@@ -7,21 +7,35 @@
   #teach-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 600px));
+    width: 100%;
+    height: 100%;
 
     .teach-img {
       width: 75px;
       height: 75px;
+      max-width: 75px;
       border-radius: 50%;
+      margin: 10px;
     }
     .teacher-stat {
+      display: flex;
       background-color: aquamarine;
       margin: 20px;
       padding: 10px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 20px;
     }
     .teacher-stat-flag {
+      display: flex;
       background-color: red;
       margin: 20px;
       padding: 10px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 20px;
     }
   }
 }
