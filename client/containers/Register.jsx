@@ -38,51 +38,52 @@ const Register = () => {
 
     return (
         <div className="cover">
-            <h1>Register here!</h1>
+        <h1>Register here!</h1>
+        { role === 'admin' ? 
             <form className="form">
-                <label>
-                    Email:
-                    <input id="email" type="text" placeholder="Email" required />
-                </label>
-                <label>
-                    Role: {/*We should make this a dropdown*/}
-                    <select required onChange={e => setRole(e.target.value)} id="role" type="dropdown" placeholder="Role">
-                        <option value="admin">Admin</option>
-                        <option value="teacher">Teacher</option>
-                    </select>
-                </label>
-                <label>
-                    First name:
-                    <input required id="firstName" type="text" placeholder="First Name" />
-                </label>
-                <label>
-                    Last name:
-                    <input required id="lastName" type="text" placeholder="Last Name" />
-                </label>
-                <label>
-                    Password:
-                    <input required id="password" type="text" placeholder="Password" />
-                </label>
-                { 
-                    role === 'teacher' ? 
-                    <form className="teacherForm"> 
-                        <p>Please enter the grades you teach. If you do not teach three grades, please leave the value as zero.</p>
-                        <label>
-                            Grade 1 (1-12):
-                            <input id="grade1" type="number" min="0" max="12" placeholder="0" />
-                        </label>
-                        <label>
-                            Grade 2 (1-12):
-                            <input id="grade2" type="number" min="0" max="12"  placeholder="0" />
-                        </label>
-                        <label>
-                            Grade 3 (1-12):
-                            <input id="grade3" type="number" min="0" max="12"  placeholder="0" />
-                        </label>
-                    </form> : <></>
-                }
+                <label>Email:</label>
+                <input required id="email" type="email" placeholder="Email" />
+                <label>Role:</label> 
+                <select required onChange={e => setRole(e.target.value)} id="role" type="dropdown" placeholder="Role">
+                    <option value="admin">Admin</option>
+                    <option value="teacher">Teacher</option>
+                </select>
+                <label>First name:</label>
+                <input required id="firstName" type="text" placeholder="First Name" />
+                <label>Last name:</label>
+                <input required id="lastName" type="text" placeholder="Last Name" />
+                <label>Password:</label>
+                <input required id="password" type="password" placeholder="Password" />
+                <button type="submit" className="submitBtn" onClick={handleSubmit} >Submit</button>
             </form>
-            <button type="submit" className="submitBtn" onClick={handleSubmit}>Submit</button>
+        :
+            <form className="form">
+                <label>Email:</label>
+                <input required id="email" type="email" placeholder="Email" />
+                <label>Role:</label> 
+                <select required onChange={e => setRole(e.target.value)} id="role" type="dropdown" placeholder="Role">
+                    <option value="admin">Admin</option>
+                    <option value="teacher">Teacher</option>
+                </select>
+                <label>First name:</label>
+                <input required id="firstName" type="text" placeholder="First Name" />
+                <label>Last name:</label>
+                <input required id="lastName" type="text" placeholder="Last Name" />
+                <label>Password:</label>
+                <input required id="password" type="password" placeholder="Password" />
+                <label>Enter the grades you teach:</label>
+                <span>
+                    <label>1: </label>
+                    <input id="grade1" type="number" min="0" max="12" placeholder="0" />
+                    <label>2: </label>
+                    <input id="grade2" type="number" min="0" max="12"  placeholder="0" />
+                    <label>3: </label>
+                    <input id="grade3" type="number" min="0" max="12"  placeholder="0" />
+                </span>
+                <button type="submit" className="submitBtn" onClick={handleSubmit}>Submit</button>
+             </form>
+        }
+
             <a className="goToLogin" onClick={handleGoToTeacherLogin}>Already signed up as teacher?</a>
             <a className="goToLogin" onClick={handleGoToAdminLogin}>Already signed up as admin user?</a>
         </div>
