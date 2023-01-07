@@ -28,6 +28,12 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
 
   const addAssign = async() => {
     const time = document.getElementById('time').value;
+    let r;
+    if(time) r = await axios.post(`teacher/assignment`, {
+      class_id: classes.id,
+      teacher_id: classes.teacher_id,
+      time: time
+    });
   }
 
   const inviteTeacher = async() => {
