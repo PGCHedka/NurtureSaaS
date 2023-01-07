@@ -16,6 +16,10 @@ body {
     align-items: center;
     height: 70vh;
     width: 65vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     h1 {
         font-family: 'Roboto Slab', sans-serif;
@@ -41,6 +45,7 @@ body {
 
     .submitBtn {
         margin-top: 1rem;
+        padding: 5px;
     }
 
     .goToLogin {
