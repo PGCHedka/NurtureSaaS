@@ -1,27 +1,57 @@
+#main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 #admin {
   display: flex;
   flex-direction: row;
+  background-color: rgb(254, 199, 208);
+  height: 80vh;
+  width: 95vw;
+  position: relative;
   .main-sidebar {
     width: 400px;
+    background-color: rgb(187, 220, 209);
   }
+
   #teach-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 600px));
+    grid-template-columns: repeat(auto-fill, minmax(400px, 500px));
+    width: 100%;
 
     .teach-img {
       width: 75px;
       height: 75px;
+      max-width: 75px;
       border-radius: 50%;
+      margin: 10px;
     }
     .teacher-stat {
+      display: flex;
+      height: 150px;
       background-color: aquamarine;
       margin: 20px;
       padding: 10px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 20px;
     }
     .teacher-stat-flag {
+      display: flex;
       background-color: red;
       margin: 20px;
       padding: 10px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 20px;
     }
   }
 }

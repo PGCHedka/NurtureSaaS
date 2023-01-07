@@ -3,6 +3,13 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  background-color: rgb(195, 195, 250);
+  position: absolute;
+  width: 95vw;
+  top: 20px;
+  height: 150px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
 
 #dropdown {
@@ -27,8 +34,9 @@
     padding: 0;
     width: 150px;
     box-shadow: rgba(blue, 0.12) 0px 1px 3px, rgba(blue, 0.24) 0px 1px 2px;
-    color: brown;
+    color: rgb(55, 4, 4);
     background-color: white;
+    z-index: 1;
   }
 
   .menu > li {

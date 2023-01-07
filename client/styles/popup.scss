@@ -1,6 +1,6 @@
 #popup {
   position: fixed;
-  background: rgba(6, 24, 38, 0.7);
+  background: rgba(6, 24, 38, 0.5);
   top: 0;
   left: 0;
   width: 100%;
@@ -16,12 +16,12 @@
     flex-direction: column;
     padding: 50px;
     opacity: 100%;
-    height: calc(100% - 10vh);
-    width: 90%;
-    overflow: scroll;
+    height: 50%;
+    width: 50%;
     align-content: center;
     z-index: 1;
     background-color: white;
+    border-radius: 20px;
 
     h2 {
       position: relative;
