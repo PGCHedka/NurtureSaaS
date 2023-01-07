@@ -1,4 +1,6 @@
 CREATE SCHEMA tool;
+SET search_path TO tool;
+SET TIMEZONE = 'GMT';
 
 CREATE TABLE  tool.admins (
   "_id" serial NOT NULL,
@@ -65,8 +67,9 @@ CREATE TABLE  tool.teacher_classes (
 CREATE TABLE  tool.class_assignments (
   "_id" serial NOT NULL,
   "class_id" integer NOT NULL,
+  "teacher_id" integer NOT NULL,
   "time" integer NOT NULL,
-  "date" date NOT NULL,
+  "date" date NOT NULL DEFAULT NOW()::date,
   CONSTRAINT "class_assignments_pk" PRIMARY KEY ("_id")
 ) WITH (
   OIDS=FALSE  
@@ -87,4 +90,11 @@ ALTER TABLE tool.teacher_classes ADD CONSTRAINT "teacher_classes_fk1" FOREIGN KE
 ALTER TABLE tool.class_assignments ADD CONSTRAINT "class_assignements_fk0" FOREIGN KEY ("class_id") REFERENCES tool.classes("_id");
 ALTER TABLE tool.student_classes ADD CONSTRAINT "student_classes_fk0" FOREIGN KEY ("student_id") REFERENCES tool.students("_id");
 ALTER TABLE tool.student_classes ADD CONSTRAINT "student_classes_fk1" FOREIGN KEY ("class_id") REFERENCES tool.classes("_id");
+ALTER TABLE tool.class_assignements ADD CONSTRAINT "class_assignments_fk1" FOREIGN KEY ("teacher_id") REFERENCES tools.teachers("_id");
 
+INSERT INTO tool.classes VALUES (1, 'Science', 1, 'We talk about science and stuff.');
+INSERT INTO tool.classes VALUES (2, 'Biology', 1, 'We talk about science and stuff.');
+INSERT INTO tool.classes VALUES (2, 'History', 1, 'We talk about science and stuff.');
+INSERT INTO tool.class_assignments VALUES (8, 1, 1, 30, NOW());
+INSERT INTO tool.class_assignments VALUES (9, 1, 1, 20, NOW());
+INSERT INTO tool.class_assignments VALUES (10, 1, 1, 25, NOW());
