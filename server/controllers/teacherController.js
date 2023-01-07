@@ -4,8 +4,7 @@ const db = require('../models/postgres');
 const teacherController = {};
 
 teacherController.getClasses = async (req, res, next) => {
-    console.log(req.params)
-    const id = req.params.id; //teacher_id passed
+    const id = req.query.teacher_id; //teacher_id passed
     try {
         const q = `SELECT * 
                     FROM tool.classes 
@@ -15,7 +14,7 @@ teacherController.getClasses = async (req, res, next) => {
         res.locals = rows;
         console.log(rows);
         return next();
-    }catch (err) {
+    } catch (err) {
         console.log(err);
         return next({
             log: `Error in teacherController getClasses middleware: ${err}`,
@@ -26,7 +25,8 @@ teacherController.getClasses = async (req, res, next) => {
 };
 
 teacherController.getStudents = async (req, res, next) => {
-    const id = req.params.id;   //class_id passed
+    const id = req.query.class_id;   //class_id passed
+    console.log(id);
     try {
         const q = `SELECT s._id, s.first_name, s._id, s.last_name
                     FROM tool.classes c
@@ -73,7 +73,6 @@ teacherController.postAssignment = async (req, res, next) => {
         const q = `INSERT INTO tool.class_assignments (class_id, teacher_id, time)
                     VALUES ($1, $2, $3)
                     RETURNING *`;
-        
         const values = [class_id, teacher_id, time];
         const { rows } = await db.query(q, values);
         console.log('rows: ', rows);

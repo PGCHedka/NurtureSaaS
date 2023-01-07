@@ -3,8 +3,8 @@ import axios from 'axios';
 import styles from '../styles/popup.scss';
 
 const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
+  console.log(classes);
   const addStudent = async () => {
-    setTrigger(false)
     const student = {};
     student.firstName = document.getElementById('first-name').value;
     student.lastName = document.getElementById('last-name').value;
@@ -16,34 +16,38 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
     const class4 = classes[document.getElementById('s-cls-4').value];
     const class5 = classes[document.getElementById('s-cls-5').value];
     if(class1) student.classes.push(class1);
-    if(class2) student.classes.push(class2);
-    if(class3) student.classes.push(class3);
-    if(class4) student.classes.push(class4);
-    if(class5) student.classes.push(class5);
+    if(class2) student.classes.push(class1);
+    if(class3) student.classes.push(class1);
+    if(class4) student.classes.push(class1);
+    if(class5) student.classes.push(class1);
     const response = await axios.post(`admin/student`, {
-      data: { ...student}
+      ...student
     });
-    console.log(response);
+    () => setTrigger(false);
+  }
+
+  const addAssign = async() => {
+    const time = document.getElementById('time').value;
+    let r;
+    if(time) r = await axios.post(`teacher/assignment`, {
+      class_id: classes.id,
+      teacher_id: classes.teacher_id,
+      time: time
+    });
   }
 
   const inviteTeacher = async() => {
-    setTrigger(false)
-    try {
-      const email = document.getElementById('email').value;
-      console.log(email);
-      const response = await axios.post(`admin/teacher/invite`, {
-        email: email
-      });
-    }
-    catch(err) {
-      console.log(err)
-    }
-    
+    const email = document.getElementById('email').value;
+    console.log(email);
+    const response = await axios.post(`admin/teacher/invite`, {
+      email: email
+    });
+    () => setTrigger(false);
   }
 
   const classesArray = [<option value='None'>None</option>];
   for (let key in classes) {
-    classesArray.push(<option value={key}>{key}</option>);
+    classesArray.push(<option key={`${key}_${classes[key]}`} value={key}>{key}</option>);
   }
   const addData = (person) => {};
   return trigger ? (
@@ -61,7 +65,7 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
           </div>
         </div>
       </div>
-    ) : (
+    ) : type === 'student' ? (
       <div id='popup'>
         <div id='popup-inner'>
           <h2>{name}</h2>
@@ -84,6 +88,21 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
               <select id='s-cls-5'>{classesArray}</select>
             </div>
             <button onClick={addStudent} className='submitBtn'>Submit</button>
+          </div>
+        </div>
+      </div>
+    ) : (
+    <div id='popup'>
+        <div id='popup-inner'>
+          <h2>{name}</h2>
+          <h3>Class: {classes.name}</h3>
+          <button className='close-btn' onClick={() => setTrigger(false)}>
+            X
+          </button>
+          <div className='input-data'>
+            <label>Time:</label>
+            <input id='time' type='number' placeholder='0-60' />
+            <button onClick={addAssign} className='submitBtn'>Submit</button>
           </div>
         </div>
       </div>
