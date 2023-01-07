@@ -18,7 +18,7 @@ const Nav = () => {
 
   return loggedInStatus ? (
     <div id='navbar'>
-      <h1 id='nav-title'>PGCHedka</h1>
+      <h1 id='nav-title'>Nurture</h1>
       <DropDown
         options={linkOptions}
         handleChange={(name) => {
