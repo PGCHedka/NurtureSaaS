@@ -16,7 +16,7 @@ router.get('/students/:id',
     }
 )
 
-router.get('/assignments/', 
+router.post('/assignment/', 
     teacherController.postAssignment,
     (req, res) => {
         return res.status(200).json(res.locals);
