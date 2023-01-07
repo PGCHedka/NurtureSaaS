@@ -30,14 +30,14 @@ const BarChart = ({ time }) => {
       {
         label: 'Total Homework Hours',
         data: [(time / 60).toFixed(2)],
-        backgroundColor: 'rgb(136, 36, 36)',
+        backgroundColor: '#fd5c63',
         // borderColor: 'rgb(187, 220, 209)',
         stack: 'Stack 0',
       },
       {
         label: 'Max Recommended Hours',
         data: [2],
-        backgroundColor: 'rgb(52,162,235)',
+        backgroundColor: '#ebecec',
         // borderColor: 'rgb(52,162,235)',
         stack: 'Stack 0',
       },

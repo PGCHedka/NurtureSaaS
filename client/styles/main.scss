@@ -11,8 +11,10 @@
 
 
 #admin, #home{
-  box-shadow: rgba(18, 18, 20, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+  box-shadow: rgba(105, 101, 101, 0.2) 0px 7px 10px 0px;
   display: flex;
+  border: 2px solid $color-secondary;
   background-color: $color-secondary-background;
   height: 80vh;
   width: 95vw;
@@ -24,8 +26,14 @@
   }
   
   .main-sidebar {
+    h2{
+      text-align: center;
+    }
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     width: 200px;
     height: 100%;
+    border-right: 2px solid $color-secondary;
     background-color: rgb(187, 220, 209);
   }
 
@@ -34,8 +42,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(600px, 700px));
     width: 100%;
-
+    padding-top: 15px;
+    padding-left: 15px;
     .teach-img {
+      border: 4px solid #e4f3f9;
       height: 100px;
       width: 100px;
       object-fit: cover;
@@ -44,9 +54,13 @@
       margin: 5px;
     }
     .teacher-stat {
+      border: 2px solid $color-secondary;
+      &:hover{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      }
       display: flex;
       height: 150px;
-      background-color: aquamarine;
+      background-color: rgb(186, 255, 232);
       margin: 20px;
       padding: 10px;
       flex-direction: row;
@@ -55,8 +69,13 @@
       border-radius: 20px;
     }
     .teacher-stat-flag {
+      border: 2px solid $color-secondary;
+      &:hover{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      }
       display: flex;
-      background-color: rgb(250, 102, 102);
+      height: 150px;
+      background-color: rgb(255, 182, 182);
       margin: 20px;
       padding: 10px;
       flex-direction: row;
@@ -65,9 +84,28 @@
       border-radius: 20px;
     }
     .student-data {
+      border: 2px solid $color-secondary;
+      &:hover{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      }
       display: flex;
       height: 150px;
-      background-color: aquamarine;
+      background-color: rgb(186, 255, 232);
+      margin: 20px;
+      padding: 10px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 20px;
+    }
+    .student-data-flag {
+      border: 2px solid $color-secondary;
+      &:hover{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      }
+      display: flex;
+      height: 150px;
+      background-color: rgb(255, 182, 182);
       margin: 20px;
       padding: 10px;
       flex-direction: row;
@@ -80,7 +118,7 @@
 .grades, .class {
   font-size: 30px;
   margin: 5px;
-  background-color: rgba(rgb(107, 107, 255), 0.15);
+  background-color: rgba(rgb(143, 158, 165), 0.15);
 }
 
 .class{
