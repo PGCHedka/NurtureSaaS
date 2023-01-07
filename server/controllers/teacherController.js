@@ -42,7 +42,7 @@ teacherController.getStudents = async (req, res, next) => {
             let students = ''
             rows.forEach(x => {
                 students += `s._id = ${x._id} OR `;
-            })
+            });
             students = students.slice(0, students.length - 3);
             const q2 = `SELECT s._id, s.first_name, s.last_name, SUM(ca.time) as "minutes"
                         FROM tool.students s

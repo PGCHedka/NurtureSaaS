@@ -1,27 +1,28 @@
+@import './_base.scss';
+
 #main {
   display: flex;
-  flex-direction: column;
+
   justify-content: center;
-  justify-items: center;
-  align-content: center;
   align-items: center;
   height: 100vh;
+  border-radius: 10px;
 }
 
 #admin {
+  box-shadow: rgba(18, 18, 20, 0.2) 0px 7px 29px 0px;
   display: flex;
-  flex-direction: row;
-  background-color: rgb(254, 199, 208);
+  background-color: $color-secondary-background;
   height: 80vh;
   width: 95vw;
-  position: relative;
 
   #main-content {
     display: flex;
     flex-direction: column;
   }
+  
   .main-sidebar {
-    width: 400px;
+    width: 200px;
     height: 100%;
     background-color: rgb(187, 220, 209);
   }
@@ -32,8 +33,10 @@
     width: 100%;
 
     .teach-img {
-      width: 90px;
-      height: 90px;
+      height: 100px;
+      width: 100px;
+      object-fit: cover;
+      overflow: hidden;
       border-radius: 50%;
       margin: 5px;
     }
