@@ -4,14 +4,16 @@ const db = require('../models/postgres');
 const teacherController = {};
 
 teacherController.getClasses = async (req, res, next) => {
-    const { id } = req.body; //teacher_id passed
+    const id = req.query.teacher_id; //teacher_id passed
     try {
         const q = `SELECT * 
-                    FROM tool.teacher_classes t
-                    WHERE t.teacher_id = $1`;
+                    FROM tool.classes 
+                    WHERE teacher_id = $1`;
         const values = [id];
         const { rows } = await db.query(q, values);
         res.locals = rows;
+        console.log(rows);
+        return next();
     }catch (err) {
         console.log(err);
         return next({
@@ -26,17 +28,6 @@ teacherController.getStudents = async (req, res, next) => {
     const id = req.query.class_id;   //class_id passed
     console.log(id);
     try {
-        // const q = `SELECT s.first_name, s.last_name, s._id, SUM(ca.time) as "minutes", c.name  
-        //             FROM tool.students s
-        //             FULL OUTER JOIN tool.student_classes sc
-        //             ON sc.student_id = s._id
-        //             FULL OUTER JOIN tool.classes c
-        //             ON sc.class_id = c._id
-        //             FULL OUTER JOIN tool.class_assignments ca
-        //             ON ca.class_id = c._id 
-        //             WHERE ca.date = NOW()::date
-        //             AND sc.class_id = $1
-        //             GROUP BY s._id, s.first_name, s.last_name, sc._id, c.name`;
         const q = `SELECT s._id, s.first_name, s._id, s.last_name
                     FROM tool.classes c
                     LEFT OUTER JOIN tool.student_classes sc
