@@ -9,7 +9,7 @@ const initialState = {
   userInfo: {
     type: 'admin',
   },
-  loggedIn: true,
+  loggedIn: false,
 };
 
 const rootReducer = createReducer(initialState, (builder) =>
