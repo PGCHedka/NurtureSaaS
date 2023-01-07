@@ -6,10 +6,14 @@ const adminController = {};
 adminController.getTeachers = async (req, res, next) => {
   const grade = req.query.grade;
   try { 
-    const q = `SELECT first_name, last_name, email FROM tool.teachers WHERE grade_1 = $1 OR grade_2 = $1 OR grade_3 = $1`;
-    const values = [grade];
-    const { rows } = await db.query(q, values);
-    console.log(rows);
+    const q = 
+      `SELECT t._id, t.first_name, t.last_name, SUM(c.time) AS "minutes"
+       FROM tool.class_assignments c 
+       JOIN tool.teachers t 
+       ON c.teacher_id = t._id 
+       WHERE c.date = NOW()::DATE
+       GROUP BY t._id`;
+    const { rows } = await db.query(q);
     res.locals = rows;
     return next();
   } catch (err) {
@@ -20,6 +24,6 @@ adminController.getTeachers = async (req, res, next) => {
       message: 'Cannot get teachers right now, sorry!',
     });
   }
-}
+};
 
 module.exports = adminController;
