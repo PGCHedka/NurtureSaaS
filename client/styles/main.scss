@@ -1,9 +1,11 @@
 #admin {
   display: flex;
   flex-direction: row;
+  background-color: rgb(254, 199, 208);
   .main-sidebar {
     width: 400px;
   }
+
   #teach-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 600px));
