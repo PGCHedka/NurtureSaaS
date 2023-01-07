@@ -26,11 +26,6 @@ const LoginAdmin = () => {
     setLoginPass(value);
   };
 
-  const handlePass = (e) => {
-    const value = e.target.value;
-    setLoginPass(value);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -64,30 +59,6 @@ const LoginAdmin = () => {
         <input type='submit' className='submitBtn' value='Login'></input>
       </form>
       <button className='goToLogin' onClick={showForgotModal}>
-        Forgot username or password?
-      </button>
-      {loggedInStatus && <Navigate to='/dashboard' replace={true} />}
-    </div>
-  );
-
-  return (
-    <div className='cover'>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Enter your admin email
-          <input onChange={handleEmail} type='text' placeholder='Email'></input>
-        </label>
-        <label>
-          Enter your password
-          <input
-            onChange={handlePass}
-            type='text'
-            placeholder='Password'
-          ></input>
-        </label>
-        <input type='submit' value='Login'></input>
-      </form>
-      <button className='forgot' onClick={showForgotModal}>
         Forgot username or password?
       </button>
       {loggedInStatus && <Navigate to='/dashboard' replace={true} />}
