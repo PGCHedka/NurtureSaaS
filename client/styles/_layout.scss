@@ -1,9 +1,15 @@
 @import './base';
 
+body {
+    background: $color-gradient;
+}
+
 .cover {
     background-color: $color-secondary-background;
+    margin: auto;
     padding: 1.5rem;
     box-shadow: inset 0 0 1.5rem 0.2rem rgba(0, 0, 0, 0.5);
+    border-radius: 2%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,6 +27,24 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
+    }
+
+    label {
+        padding-top: 0.8rem;
+    }
+
+    .teacherForm {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .submitBtn {
+        margin-top: 1rem;
+    }
+
+    .goToLogin {
+        margin-top: 1rem;
     }
 
     

@@ -65,7 +65,7 @@ const Register = () => {
                 </label>
                 { 
                     role === 'teacher' ? 
-                    <div> 
+                    <form className="teacherForm"> 
                         <p>Please enter the grades you teach. If you do not teach three grades, please leave the value as zero.</p>
                         <label>
                             Grade 1 (1-12):
@@ -79,10 +79,10 @@ const Register = () => {
                             Grade 3 (1-12):
                             <input id="grade3" type="number" min="0" max="12"  placeholder="0" />
                         </label>
-                    </div> : <></>
+                    </form> : <></>
                 }
             </form>
-            <button type="submit" onClick={handleSubmit}>Submit</button>
+            <button type="submit" className="submitBtn" onClick={handleSubmit}>Submit</button>
             <a className="goToLogin" onClick={handleGoToTeacherLogin}>Already signed up as teacher?</a>
             <a className="goToLogin" onClick={handleGoToAdminLogin}>Already signed up as admin user?</a>
         </div>
