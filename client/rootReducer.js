@@ -4,14 +4,15 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 const loginAction = createAction('loginAction');
 const updateView = createAction('updateView');
 const userIDAction = createAction('userIDAction');
+const userTypeAction = createAction('userTypeAction')
 
 //user type can be admin, teacher
 const initialState = {
   userInfo: {
-    type: 'admin',
+    type: '',
   },
   view: 'teachers',
-  loggedIn: true,
+  loggedIn: false,
   userID: '',
 };
 
@@ -30,10 +31,13 @@ const rootReducer = createReducer(initialState, (builder) =>
       console.log('userIDAction');
       state.userID = action.payload;
     })
+    .addCase(userTypeAction, (state, action) => {
+      state.userInfo.type = action.payload;
+    })
 );
 
 // //export reducer
 export default rootReducer;
 
 // export actions
-export { loginAction, updateView, userIDAction };
+export { loginAction, updateView, userIDAction, userTypeAction };
