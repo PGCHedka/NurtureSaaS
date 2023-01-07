@@ -1,3 +1,4 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Nav from '../components/Nav.jsx';
@@ -19,7 +20,7 @@ const App = () => {
         <Route path='/login' /> {/** login path */}
         <Route path='/dashboard' element={currComponent} /> {/** main path */}
         <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<LoginAdmin />} /> {/** login path */}
+        <Route path='/' element={<LoginAdmin />} /> {/** login path */}
         {/* <Route path='/profile' /> * profile path -- teacher only */}
       </Routes>
     </div>

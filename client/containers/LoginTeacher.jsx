@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import forgotModal from "./forgotModal.jsx";
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
-import { set } from 'immer/dist/internal.js';
 
 const LoginTeacher = () => {
     const [loginEmail, setLoginEmail] = useState();
