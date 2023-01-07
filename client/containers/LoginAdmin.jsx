@@ -45,7 +45,6 @@ const LoginAdmin = () => {
 
   return (
     <div>
-      <div><button onClick={() => navigate("/")}>Are you a teacher?</button></div>
       <div className='cover'>
         <h2>Log into your Admin account</h2>
         <form onSubmit={handleSubmit} className='form'>
@@ -59,6 +58,7 @@ const LoginAdmin = () => {
           ></input>
           
           <input type='submit' className='submitBtn' value='Login'></input>
+          <button className='submitBtn' onClick={() => navigate("/")}>Are you a teacher?</button>
         </form>
         {loggedInStatus && <Navigate to='/dashboard' replace={true} />}
       </div>
