@@ -28,20 +28,9 @@ body {
         margin-bottom: 2.5rem;
     }
 
-    .form {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-    }
 
     label {
         padding-top: 0.8rem;
-    }
-
-    .teacherForm {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
     }
 
 
@@ -50,4 +39,18 @@ body {
     }
 
     
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+a {
+    &:hover{
+        cursor: pointer;
+        text-shadow: 1px 5px 4px rgba(0,0,0,0.3), 
+            0px -4px 10px rgba(255,255,255,0.3);
+    }
 }

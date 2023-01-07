@@ -8,6 +8,7 @@ authController.teacherSignUp = async (req, res, next) => {
     req.body;
   const today = new Date().toDateString();
   try {
+    if(!firstName || !lastName || !email || !password ) throw new Error();
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const q = `INSERT INTO tool.teachers(first_name, last_name, email, password, grade_1, grade_2, grade_3, date_registered) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;`;
