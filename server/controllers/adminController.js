@@ -108,7 +108,7 @@ adminController.updateStudentClasses = async(req, res, next) => {
 adminController.deleteStudent = async(req, res, next) => {
   const { id } = req.body;
   try {
-    const q = `DELETE FROM tool.students WHERE _id = ${id} CASCADE`;
+    const q = `DELETE FROM tool.students WHERE _id = ${id}`;
     const r = await db.query(q);
     console.log(r);
     return next();

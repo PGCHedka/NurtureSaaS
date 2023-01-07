@@ -77,11 +77,11 @@ CREATE TABLE  tool.student_classes (
 );
 
 
-ALTER TABLE tool.classes ADD CONSTRAINT "classes" FOREIGN KEY ("teacher_id") REFERENCES tool.teachers("_id");
-ALTER TABLE tool.class_assignments ADD CONSTRAINT "class_assignements_fk0" FOREIGN KEY ("class_id") REFERENCES tool.classes("_id");
-ALTER TABLE tool.student_classes ADD CONSTRAINT "student_classes_fk0" FOREIGN KEY ("student_id") REFERENCES tool.students("_id");
-ALTER TABLE tool.student_classes ADD CONSTRAINT "student_classes_fk1" FOREIGN KEY ("class_id") REFERENCES tool.classes("_id");
-ALTER TABLE tool.class_assignements ADD CONSTRAINT "class_assignments_fk1" FOREIGN KEY ("teacher_id") REFERENCES tools.teachers("_id");
+ALTER TABLE tool.classes ADD CONSTRAINT "classes_fk0" FOREIGN KEY ("teacher_id") REFERENCES tool.teachers("_id") ON DELETE CASCADE;
+ALTER TABLE tool.class_assignments ADD CONSTRAINT "class_assignments_fk0" FOREIGN KEY ("class_id") REFERENCES tool.classes("_id") ON DELETE CASCADE;
+ALTER TABLE tool.student_classes ADD CONSTRAINT "student_classes_fk0" FOREIGN KEY ("student_id") REFERENCES tool.students("_id") ON DELETE CASCADE;
+ALTER TABLE tool.student_classes ADD CONSTRAINT "student_classes_fk1" FOREIGN KEY ("class_id") REFERENCES tool.classes("_id") ON DELETE CASCADE;
+ALTER TABLE tool.class_assignments ADD CONSTRAINT "class_assignments_fk1" FOREIGN KEY ("teacher_id") REFERENCES tool.teachers("_id") ON DELETE CASCADE;
 
 
 INSERT INTO tool.classes VALUES (1, 'Science', 1, 1, 'We talk about science and stuff.');
