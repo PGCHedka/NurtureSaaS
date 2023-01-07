@@ -3,6 +3,7 @@ import { current } from '@reduxjs/toolkit';
 
 // // //ACTIONS - i've included an example, feel free to change
 const loginAction = createAction('loginAction');
+const userIDAction = createAction('userIDAction')
 
 //user type can be admin, teacher
 const initialState = {
@@ -10,12 +11,17 @@ const initialState = {
     type: 'admin',
   },
   loggedIn: false,
+  userID: ''
 };
 
 const rootReducer = createReducer(initialState, (builder) =>
   builder.addCase(loginAction, (state, action) => {
     console.log('loginAction');
     state.loggedIn ? (state.loggedIn = false) : (state.loggedIn = true);
+  }),
+  builder.addCase(userIDAction, (state, action) => {
+    console.log('userIDAction');
+    state.userID = action.payload;
   })
 );
 
@@ -23,4 +29,4 @@ const rootReducer = createReducer(initialState, (builder) =>
 export default rootReducer;
 
 // export actions
-export { loginAction };
+export { loginAction, userIDAction };
