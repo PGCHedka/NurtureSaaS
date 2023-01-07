@@ -4,6 +4,7 @@ const path = require('path');
 const PORT = 3000;
 const authRouter = require('./routes/authRouter');
 const adminRouter = require('./routes/adminRouter');
+const teacherRouter = require('./routes/teacherRouter');
 
 // create express app
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
  */
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
+app.use('/teacher', teacherRouter);
 
 // console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'production') {
