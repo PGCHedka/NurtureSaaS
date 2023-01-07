@@ -11,12 +11,7 @@ const Nav = () => {
 
   useEffect(() => {
     userType === 'admin'
-      ? setLinkOptions([
-          'Add Student',
-          'Update Teacher',
-          'Update Student',
-          'Log Out',
-        ])
+      ? setLinkOptions(['View Students', 'View Teachers', 'Log Out'])
       : setLinkOptions(['Assign', 'Logout']);
   }, []);
 
@@ -26,7 +21,7 @@ const Nav = () => {
       <DropDown options={linkOptions} handleChange={(name) => {}} />
     </div>
   ) : (
-    <div id='navbar'></div>
+    <div></div>
   );
 };
 

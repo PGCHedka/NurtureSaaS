@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Modal from './Modal.jsx';
 import { useDispatch } from 'react-redux';
-import { loginAction } from '../rootReducer.js';
+import { loginAction, updateView } from '../rootReducer.js';
 import { useNavigate } from 'react-router-dom';
 
 const DropDown = ({ options, handleChange }) => {
@@ -30,6 +30,7 @@ const DropDown = ({ options, handleChange }) => {
             setAction(name);
             if (name !== 'Log Out') {
               setButtonPopup(true);
+              dispatch(updateView(name));
             } else {
               dispatch(loginAction());
               navigate('/');

@@ -4,15 +4,30 @@ import styles from '../styles/popup.scss';
 
 const Modal = ({ action, trigger, setTrigger }) => {
   //userdata should include display name
+  let actionType;
+  action.includes('Student')
+    ? (actionType = 'student')
+    : (actionType = 'other');
   return trigger ? (
-    <div id='popup'>
-      <div id='popup-inner'>
-        <h2>{action}</h2>
-        <button className='close-btn' onClick={() => setTrigger(false)}>
-          X
-        </button>
+    actionType === 'student' ? (
+      <div id='popup'>
+        <div id='popup-inner'>
+          <h2>{action}</h2>
+          <button className='close-btn' onClick={() => setTrigger(false)}>
+            X
+          </button>
+        </div>
       </div>
-    </div>
+    ) : (
+      <div id='popup'>
+        <div id='popup-inner'>
+          <h2>{action}</h2>
+          <button className='close-btn' onClick={() => setTrigger(false)}>
+            X
+          </button>
+        </div>
+      </div>
+    )
   ) : (
     <div></div>
   );

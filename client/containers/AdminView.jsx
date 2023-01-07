@@ -9,8 +9,11 @@ import Teacher from '../components/Teacher.jsx';
 const Admin = () => {
   const gradeArray = [];
   const teacherArray = [];
+  const studentArray = [];
   const [currentGrade, setGrade] = useState('0');
   const [teachers, setTeachers] = useState([]);
+  const [students, setStudents] = useState([]);
+  const view = useSelector((state) => state.view);
 
   for (let i = 0; i <= 12; i++) {
     if (i === 0) {
@@ -19,7 +22,6 @@ const Admin = () => {
           className='grades'
           key='unassigned'
           onClick={() => {
-            console.log('grade_' + i);
             setGrade(0);
           }}
         >
@@ -32,7 +34,6 @@ const Admin = () => {
           className='grades'
           key={'grade' + i}
           onClick={() => {
-            console.log('grade_' + i);
             setGrade(i);
           }}
         >
@@ -41,38 +42,59 @@ const Admin = () => {
       );
     }
   }
-
-  teachers.map((teacher) => {
-    teacherArray.push(
-      <Teacher
-        name={teacher.first_name + ' ' + teacher.last_name}
-        time={teacher.time}
-        key={teacher.first_name + teacher.last_name}
-      />
-    );
-  });
+  if (view === 'teachers') {
+    teachers.map((teacher) => {
+      teacherArray.push(
+        <Teacher
+          name={teacher.first_name + ' ' + teacher.last_name}
+          time={teacher.minutes}
+          key={teacher.first_name + teacher.last_name}
+        />
+      );
+    });
+  } else {
+    students.map((student) => {
+      studentArray.push(
+        <Teacher
+          name={teacher.first_name + ' ' + teacher.last_name}
+          time={teacher.minutes}
+          key={teacher.first_name + teacher.last_name}
+        />
+      );
+    });
+  }
 
   //get request for all teachers, should return an array of all teachers for that grade
 
-  const getTeachers = async (currentGrade) => {
+  const getData = async (currentGrade) => {
     try {
-      const response = await axios.get('admin/teachers', {
+      const response = await axios.get(`admin/${view}`, {
         params: { grade: currentGrade },
       });
-      const teacherArray = response.data;
-      setTeachers(teacherArray);
+      if (view === 'teachers') {
+        const teacherArray = response.data;
+        setTeachers(teacherArray);
+      } else {
+        const studentArray = response.data;
+        setStudents(studentArray);
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    getTeachers(currentGrade);
+    getData(currentGrade);
   }, [currentGrade]);
-  return (
+  return view === 'teachers' ? (
     <div id='admin'>
       <div className='main-sidebar'>{gradeArray}</div>
       <div id='teach-container'>{teacherArray}</div>
+    </div>
+  ) : (
+    <div id='admin'>
+      <div className='main-sidebar'>{gradeArray}</div>
+      <div id='teach-container'>{studentArray}</div>
     </div>
   );
 };
