@@ -34,20 +34,142 @@ adminController.addStudent = async (req, res, next) => {
     const values = [firstName, lastName, grade];
     const { rows } = await db.query(q, values);
     console.log(rows);
-    const vals =`${rows._id}, ${classes.join(`), (${rows._id}, `)}`
+    const vals =`${rows[0]._id}, ${classes.join(`), (${rows[0]._id}, `)}`
     console.log(vals);
     const q2 = `INSERT INTO tool.student_classes(student_id, class_id) VALUES (${vals})`;
-    console.log(q2);
+    const r = await db.query(q).rows; 
+    console.log(r);
+    return next();
   } catch (err) {
-
+    return next({
+      log: `Error in adminController.addStudent: ${err}`,
+      status: 500,
+      message: 'Cannot add that student right now, sorry!',
+    });
   }
-}
+};
 
-// adminController.addClass = async(req, res, next) => {
-//   const { name, description, teacher_id, grade } = req.body;
-//   try{
+adminController.addClass = async(req, res, next) => {
+  const { name, description, teacher_id, grade } = req.body;
+  try {
+    const q = `INSERT INTO tool.classes(name, grade, teacher_id, description) VALUES ($1, $2, $3, $4)`;
+    const values = [name, grade, teacher_id, description];
+    const r = await db.query(q, values);
+    return next();
+  } catch (err) {
+    return next({
+      log: `Error in adminController.addClass: ${err}`,
+      status: 500,
+      message: 'Cannot add that class right now, sorry!',
+    });
+  }
+};
 
-//   }
-// }
+adminController.updateStudent = async(req, res, next) => {
+  const { id, firstName, lastName, grade } = req.body;
+  try {
+    let q = `UPDATE tool.students SET `;
+    if(firstName) q += `first_name = '${firstName}', `
+    if(lastName) q += `last_name = '${lastName}', `
+    if(grade) q += `grade = ${grade} `;
+    q += `WHERE _id = ${id}`;
+    await db.query(q);
+    return next();
+  } catch (err) {
+    return next({
+      log: `Error in adminController.updateStudent: ${err}`,
+      status: 500,
+      message: 'This student does not want to be updated, sorry!',
+    });
+  }
+};
 
+adminController.updateStudentClasses = async(req, res, next) => {
+  const { id, classes } = req.body;
+  try {
+    let q = `DELETE FROM tool.student_classes WHERE student_id = ${id}`;
+    await db.query(q);
+    let q2 = `INSERT INTO tool.student_classes(student_id, class_id) VALUES `;
+    classes.forEach((x, i)=> {
+      if(i === classes.length - 1) q2 += `(${id}, ${x})`;
+      else q2 += `(${id}, ${x}),`;
+    });
+    const r = await db.query(q2);
+    return next();
+  } catch (err) {
+    return next({
+      log: `Error in adminController.updateStudentClasses: ${err}`,
+      status: 500,
+      message: 'This student wants to stay in their classes, sorry!',
+    });
+  }
+};
+
+adminController.deleteStudent = async(req, res, next) => {
+  const { id } = req.body;
+  try {
+    const q = `DELETE FROM tool.students WHERE _id = ${id} CASCADE`;
+    const r = await db.query(q);
+    console.log(r);
+    return next();
+  } catch (err) {
+    return next({
+      log: `Error in adminController.deleteStudent: ${err}`,
+      status: 500,
+      message: 'This student does not want to be deleted, sorry!',
+    });
+  }
+};
+
+adminController.updateTeacher = async(req, res, next) => {
+  const { firstName, classes } = req.body;
+  try {
+    
+  } catch (err) {
+    return next({
+      log: `Error in adminController.updateTeacher: ${err}`,
+      status: 500,
+      message: 'They would prefer not to be updated, sorry!',
+    });
+  }
+};
+
+adminController.deleteTeacher = async(req, res, next) => {
+  const { firstName, classes } = req.body;
+  try {
+    
+  } catch (err) {
+    return next({
+      log: `Error in adminController.deleteTeacher: ${err}`,
+      status: 500,
+      message: 'That teacher is here to stay, sorry!',
+    });
+  }
+};
+
+adminController.updateClass = async(req, res, next) => {
+  const { firstName, classes } = req.body;
+  try {
+    
+  } catch (err) {
+    return next({
+      log: `Error in adminController.updateClass: ${err}`,
+      status: 500,
+      message: 'That teacher is here to stay, sorry!',
+    });
+  }
+};
+
+adminController.deleteClass = async(req, res, next) => {
+  const { firstName, classes } = req.body;
+  try {
+    
+  } catch (err) {
+    return next({
+      log: `Error in adminController.deleteClass: ${err}`,
+      status: 500,
+      message: 'That teacher is here to stay, sorry!',
+    });
+  }
+};
 module.exports = adminController;
