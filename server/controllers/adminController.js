@@ -141,12 +141,21 @@ adminController.getStudent = async (req, res, next) => {
 
 adminController.getStudents = async (req, res, next) => {
   const grade = req.query.grade;
+  console.log(grade);
   try {
-    let q = `SELECT * FROM tool.students `;
-    if (grade) q += `WHERE grade = ${grade}`;
+    let q = `SELECT s.*, SUM(ca.time) as "minutes"
+                FROM tool.students s
+                FULL OUTER JOIN tool.student_classes sc
+                ON sc.student_id = s._id
+                FULL OUTER JOIN tool.class_assignments ca
+                ON sc.class_id = ca.class_id `
+    if (grade) q += `WHERE s.grade = ${grade}`;
+    q += ` GROUP BY s._id`;
+    console.log(q);
     const { rows } = await db.query(q);
     console.log(rows)
     res.locals = rows;
+    console.log(rows);
     return next();
   } catch (err) {
     return next({

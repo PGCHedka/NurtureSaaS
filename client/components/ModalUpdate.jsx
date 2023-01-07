@@ -47,7 +47,7 @@ const ModalUpdate = ({ name, classes, data, type, trigger, setTrigger }) => {
       <div id='popup'>
         <div id='popup-inner'>
           <h2>
-            {name} - Grade: {data.grade}
+            {name}
           </h2>
           <button className='close-btn' onClick={() => setTrigger(false)}>
             X
@@ -55,22 +55,19 @@ const ModalUpdate = ({ name, classes, data, type, trigger, setTrigger }) => {
           <div className='input-data'>
             <label>First Name:</label>
             <input id='first-name' type='text' placeholder='First Name' />
-            <div>
-              <label>Last Name:</label>
-              <input id='last-name' type='text' placeholder='Last Name' />
-            </div>
+            <label>Last Name:</label>
+            <input id='last-name' type='text' placeholder='Last Name' />
             <label>Grade: </label>
             <input type='number' min='0' max='12' />
-            <div>
-              <label>Classes:</label>
-              <div id='classes-teach'>
+            <label>Classes:</label>
+              <div id='classes-teach' className="centerMe">
                 <select id='s-cls-1'>{classesArray}</select>
                 <select id='s-cls-2'>{classesArray}</select>
                 <select id='s-cls-3'>{classesArray}</select>
                 <select id='s-cls-4'>{classesArray}</select>
                 <select id='s-cls-5'>{classesArray}</select>
               </div>
-            </div>
+              <button className='submitBtn'>Submit</button>
           </div>
         </div>
       </div>
