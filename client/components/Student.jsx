@@ -17,7 +17,7 @@ const Student = ({ name, time, trigger }) => {
       ></img>
       <div className='student-info'>
         <h2>{name}</h2>
-        <p>Average Homework Hour(s): {(time / 60).toFixed(2)} Hours</p>
+        <p>Hour(s) of Homework Today: {(time / 60).toFixed(2)} Hours</p>
         <BarChart time={time} />
       </div>
     </div>
