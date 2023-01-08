@@ -72,6 +72,7 @@ const Admin = () => {
             data={student}
             classes={classes}
             type='student'
+            trigger={addPopup}
             trigger={updatePopup}
             setTrigger={setUpdatePopup}
           />
@@ -89,7 +90,7 @@ const Admin = () => {
     try {
       const response = await axios.get(`admin/${view}`, {
         params: { grade: currentGrade },
-      });
+      });                                       
       if (view === 'teachers') {
         const teacherArray = response.data;
         setTeachers(teacherArray);
@@ -107,7 +108,7 @@ const Admin = () => {
       const data = response.data.rows;
       const obj = {};
       for (let i = 0; i < data.length; i++) {
-        obj[data[i].name] = data[i]._id;
+        obj[data[i].name] = 1;
       }
       setClasses(obj);
     } catch (err) {
@@ -118,12 +119,10 @@ const Admin = () => {
   useEffect(() => {
     getData(currentGrade);
   }, [currentGrade]);
-
   useEffect(() => {
     getData(currentGrade);
     getClasses();
   }, [view]);
-
   return view === 'teachers' ? (
     <div id='admin'>
       <div className='main-sidebar'>
@@ -159,7 +158,6 @@ const Admin = () => {
           <ModalAdd
             name={'Add Student'}
             type='student'
-            classes={classes}
             trigger={addPopup}
             setTrigger={setAddPopup}
           />

@@ -36,6 +36,9 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
 
   const inviteTeacher = async() => {
     const email = document.getElementById('email').value;
+    console.log(email);
+    const response = await axios.post(`admin/teacher/invite`, { data: 
+      { email: email }
     const response = await axios.post(`admin/teacher/invite`, { data: 
       { email: email }
     });
