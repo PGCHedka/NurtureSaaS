@@ -5,20 +5,48 @@ import Teacher from '../components/Teacher.jsx';
 import Student from '../components/Student.jsx';
 import ModalAdd from '../components/ModalAdd.jsx';
 import ModalUpdate from '../components/ModalUpdate.jsx';
-
 const Admin = () => {
-  const [grades, setGrades] = useState([])
+  const gradeArray = [];
+  const teacherArray = [];
+  const studentArray = [];
   const [currentGrade, setGrade] = useState('0');
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
   const [classes, setClasses] = useState({});
+  const view = useSelector((state) => state.view);
   const [updatePopup, setUpdatePopup] = useState(false);
   const [addPopup, setAddPopup] = useState(false);
-  const view = useSelector((state) => state.view);
-
-  const teacherGen = (teachers) => {
-    return teachers.map((teacher) => {
-      return (
+  
+  for (let i = 0; i <= 12; i++) {
+    if (i === 0) {
+      gradeArray.push(
+        <div
+          className='grades'
+          key='unassigned'
+          onClick={() => {
+            setGrade(0);
+          }}
+        >
+          Unassigned
+        </div>
+      );
+    } else {
+      gradeArray.push(
+        <div
+          className='grades'
+          key={'grade' + i}
+          onClick={() => {
+            setGrade(i);
+          }}
+        >
+          Grade {i}
+        </div>
+      );
+    }
+  }
+  if (view === 'teachers') {
+    teachers.map((teacher) => {
+      teacherArray.push(
         <div key={teacher.first_name + teacher.last_name}>
           <ModalUpdate
             name={teacher.first_name + ' ' + teacher.last_name}
@@ -34,74 +62,31 @@ const Admin = () => {
             trigger={setUpdatePopup}
           />
         </div>
-      )
+      );
     });
-  };
-
-  const studentGen = (students) => {
-    return students.map((student, i) => {
-      if (student.minutes === null) {
-        student.minutes = 0;
-      }
-      return (
-        <div key={student.first_name + student.last_name + student.minutes + student.grade + i}>
+  } else {
+    students.map((student) => {
+      studentArray.push(
+        <div key={student.first_name + student.last_name}>
           <ModalUpdate
             name={student.first_name + ' ' + student.last_name}
             data={student}
             classes={classes}
             type='student'
+            trigger={addPopup}
             trigger={updatePopup}
             setTrigger={setUpdatePopup}
           />
           <Student
             name={student.first_name + ' ' + student.last_name}
-            time={student.minutes}
+            time={100}
             trigger={setUpdatePopup}
           />
         </div>
-      )
+      );
     });
   }
-  
-  useEffect(() => {
-    const gradeArray = [];
-    for (let i = 0; i <= 12; i++) {
-      if (i === 0) {
-        gradeArray.push(
-          <div
-            className='grades'
-            key='unassigned'
-            onClick={() => {
-              setGrade(0);
-            }}
-          >
-            Unassigned
-          </div>
-        );
-      } else {
-        gradeArray.push(
-          <div
-            className='grades'
-            key={'grade' + i}
-            onClick={() => {
-              setGrade(i);
-            }}
-          >
-            Grade {i}
-          </div>
-        );
-      }
-    }
-    setGrades(gradeArray);
-    if (view === 'teachers') {
-      setTeachers(teacherGen(teachers))
-    } else {
-      setStudents(studentGen(students))
-    }
-  }, []);
-
   //get request for all teachers, should return an array of all teachers for that grade
-
   const getData = async (currentGrade) => {
     try {
       const response = await axios.get(`admin/${view}`, {
@@ -126,14 +111,13 @@ const Admin = () => {
       console.log(err);
     }
   };
-
   const getClasses = async () => {
     try {
       const response = await axios.get('/admin/classes');
       const data = response.data.rows;
       const obj = {};
       for (let i = 0; i < data.length; i++) {
-        obj[data[i].name] = data[i]._id;
+        obj[data[i].name] = 1;
       }
       setClasses(obj);
     } catch (err) {
@@ -148,24 +132,17 @@ const Admin = () => {
   useEffect(() => {
     getData(currentGrade);
   }, [currentGrade]);
-
   useEffect(() => {
     getData(currentGrade);
   }, [view]);
-
-  useEffect(() => {
-
-  }, [updatePopup])
-
   return view === 'teachers' ? (
     <div id='admin'>
       <div className='main-sidebar'>
         <h2>Grades</h2>
-        {grades}
+        {gradeArray}
       </div>
       <div id='main-content'>
-        <h1>Teachers</h1>
-        <div id='teach-container'>{teachers}</div>
+        <div id='teach-container'>{teacherArray}</div>
         <div className='add-contain'>
           <ModalAdd
             name={'Add Teacher'}
@@ -186,18 +163,13 @@ const Admin = () => {
     </div>
   ) : (
     <div id='admin'>
-      <div className='main-sidebar'>
-        <h2>Grades</h2>
-        {grades}
-      </div>
+      <div className='main-sidebar'>{gradeArray}</div>
       <div id='main-content'>
-        <h1>Students</h1>
-        <div id='teach-container'>{students}</div>
+        <div id='teach-container'>{studentArray}</div>
         <div className='add-contain'>
           <ModalAdd
             name={'Add Student'}
             type='student'
-            classes={classes}
             trigger={addPopup}
             setTrigger={setAddPopup}
           />
@@ -213,5 +185,4 @@ const Admin = () => {
     </div>
   );
 };
-
 export default Admin;
