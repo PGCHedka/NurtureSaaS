@@ -286,7 +286,7 @@ adminController.deleteClass = async (req, res, next) => {
  * This is solely set up as a test. To use, you would need to incorporate your own credentials.
  */
 adminController.inviteTeacher = async (req, res, next) => {
-  const email = req.body.email;
+  const { email } = req.body.data
   try {
     let testAccount = await nodemailer.createTestAccount();
 
