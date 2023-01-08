@@ -187,7 +187,7 @@ adminController.getTeacher = async (req, res, next) => {
 };
 
 adminController.updateTeacher = async (req, res, next) => {
-  const { id, firstName, lastName, grade1, grade2, grade3 } = req.body;
+  const { id, firstName, lastName, grade1, grade2, grade3 } = req.body.data;
   console.log(req.body);
   try {
     let q = `UPDATE tool.teachers SET `;
