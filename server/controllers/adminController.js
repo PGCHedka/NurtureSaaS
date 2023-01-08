@@ -29,6 +29,7 @@ adminController.getTeachers = async (req, res, next) => {
 
 adminController.addStudent = async (req, res, next) => {
   const { firstName, lastName, classes, grade } = req.body.data;
+  console.log(classes);
   try {
     const q = `INSERT INTO tool.students(first_name, last_name, grade) VALUES ($1, $2, $3) RETURNING *`;
     console.log(req.body);

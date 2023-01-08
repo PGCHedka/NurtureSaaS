@@ -40,7 +40,7 @@ const Register = () => {
         <div className="cover">
         <h1>Register here!</h1>
         { role === 'admin' ? 
-            <form className="form">
+            <form className="form" onSubmit={handleSubmit}>
                 <label>Email:</label>
                 <input required id="email" type="email" placeholder="Email" />
                 <label>Role:</label> 
@@ -54,10 +54,10 @@ const Register = () => {
                 <input required id="lastName" type="text" placeholder="Last Name" />
                 <label>Password:</label>
                 <input required id="password" type="password" placeholder="Password" />
-                <button type="submit" className="submitBtn" onClick={handleSubmit} >Submit</button>
+                <button type="submit" className="submitBtn">Submit</button>
             </form>
         :
-            <form className="form">
+            <form className="form" onSubmit={handleSubmit}>
                 <label>Email:</label>
                 <input required id="email" type="email" placeholder="Email" />
                 <label>Role:</label> 
@@ -80,7 +80,7 @@ const Register = () => {
                     <label>3: </label>
                     <input id="grade3" type="number" min="0" max="12"  placeholder="0" />
                 </span>
-                <button type="submit" className="submitBtn" onClick={handleSubmit}>Submit</button>
+                <button type="submit" className="submitBtn">Submit</button>
              </form>
         }
 
