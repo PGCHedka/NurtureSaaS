@@ -157,6 +157,7 @@ const Admin = () => {
           <ModalAdd
             name={'Add Student'}
             type='student'
+            classes={classes}
             trigger={addPopup}
             setTrigger={setAddPopup}
           />
