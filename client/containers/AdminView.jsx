@@ -95,7 +95,6 @@ const Admin = () => {
         setTeachers(teacherArray);
       } else {
         const studentArray = response.data;
-        console.log(studentArray);
         setStudents(studentArray);
       }
     } catch (err) {
@@ -108,7 +107,7 @@ const Admin = () => {
       const data = response.data.rows;
       const obj = {};
       for (let i = 0; i < data.length; i++) {
-        obj[data[i].name] = 1;
+        obj[data[i].name] = data[i]._id;
       }
       setClasses(obj);
     } catch (err) {
@@ -117,15 +116,14 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    getClasses();
-  }, []);
+    getData(currentGrade);
+  }, [currentGrade]);
 
   useEffect(() => {
     getData(currentGrade);
-  }, [currentGrade]);
-  useEffect(() => {
-    getData(currentGrade);
+    getClasses();
   }, [view]);
+
   return view === 'teachers' ? (
     <div id='admin'>
       <div className='main-sidebar'>
@@ -161,6 +159,7 @@ const Admin = () => {
           <ModalAdd
             name={'Add Student'}
             type='student'
+            classes={classes}
             trigger={addPopup}
             setTrigger={setAddPopup}
           />
