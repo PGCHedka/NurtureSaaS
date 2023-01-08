@@ -106,9 +106,9 @@ const Admin = () => {
     try {
       const response = await axios.get(`admin/${view}`, {
         params: { grade: currentGrade },
-      });
+      });                                       
       if (view === 'teachers') {
-        if (!Object.keys(response.data).length) {
+        if (!Object.keys(response.data).length) {           
           setTeachers([])
         } else {
           const teacherArray = response.data;

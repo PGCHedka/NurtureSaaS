@@ -3,7 +3,6 @@ import axios from 'axios';
 import styles from '../styles/popup.scss';
 
 const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
-  console.log(classes);
   const addStudent = async () => {
     const student = {};
     student.firstName = document.getElementById('first-name').value;
@@ -20,29 +19,26 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
     if(class3) student.classes.push(class1);
     if(class4) student.classes.push(class1);
     if(class5) student.classes.push(class1);
-    const response = await axios.post(`admin/student`, {
-      ...student
-    });
-    () => setTrigger(false);
+    const response = await axios.post(`admin/student`,
+      { data: { ...student } });
   }
 
   const addAssign = async() => {
     const time = document.getElementById('time').value;
     let r;
-    if(time) r = await axios.post(`teacher/assignment`, {
+    if(time) r = await axios.post(`teacher/assignment`, { data: {
       class_id: classes.id,
       teacher_id: classes.teacher_id,
       time: time
-    });
+    }});
   }
 
   const inviteTeacher = async() => {
     const email = document.getElementById('email').value;
     console.log(email);
-    const response = await axios.post(`admin/teacher/invite`, {
-      email: email
+    const response = await axios.post(`admin/teacher/invite`, { data: 
+      { email: email }
     });
-    () => setTrigger(false);
   }
 
   const classesArray = [<option value='None'>None</option>];

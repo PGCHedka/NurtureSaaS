@@ -67,7 +67,7 @@ teacherController.getStudents = async (req, res, next) => {
 }
 
 teacherController.postAssignment = async (req, res, next) => {
-    const { class_id, teacher_id, time } = req.body;
+    const { class_id, teacher_id, time } = req.body.data;
     try {
         const q = `INSERT INTO tool.class_assignments (class_id, teacher_id, time)
                     VALUES ($1, $2, $3)
