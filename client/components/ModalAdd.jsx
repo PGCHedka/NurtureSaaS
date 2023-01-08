@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from '../styles/popup.scss';
 
 const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
+  console.log('modal classes', classes);
   const addStudent = async () => {
     const student = {};
     student.firstName = document.getElementById('first-name').value;
@@ -36,6 +37,8 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
   const inviteTeacher = async() => {
     const email = document.getElementById('email').value;
     console.log(email);
+    const response = await axios.post(`admin/teacher/invite`, { data: 
+      { email: email }
     const response = await axios.post(`admin/teacher/invite`, { data: 
       { email: email }
     });

@@ -16,7 +16,6 @@ const Admin = () => {
   const view = useSelector((state) => state.view);
   const [updatePopup, setUpdatePopup] = useState(false);
   const [addPopup, setAddPopup] = useState(false);
-  
   for (let i = 0; i <= 12; i++) {
     if (i === 0) {
       gradeArray.push(
@@ -93,19 +92,11 @@ const Admin = () => {
         params: { grade: currentGrade },
       });                                       
       if (view === 'teachers') {
-        if (!Object.keys(response.data).length) {           
-          setTeachers([])
-        } else {
-          const teacherArray = response.data;
-          setTeachers(teacherGen(teacherArray));
-        }
+        const teacherArray = response.data;
+        setTeachers(teacherArray);
       } else {
-        if (!Object.keys(response.data).length) {
-          setStudents([])
-        } else {
-          const studentArray = response.data;
-          setStudents(studentGen(studentArray));
-        }
+        const studentArray = response.data;
+        setStudents(studentArray);
       }
     } catch (err) {
       console.log(err);
@@ -126,14 +117,11 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    getClasses();
-  }, []);
-
-  useEffect(() => {
     getData(currentGrade);
   }, [currentGrade]);
   useEffect(() => {
     getData(currentGrade);
+    getClasses();
   }, [view]);
   return view === 'teachers' ? (
     <div id='admin'>
