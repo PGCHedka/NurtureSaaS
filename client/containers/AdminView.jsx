@@ -106,9 +106,9 @@ const Admin = () => {
     try {
       const response = await axios.get(`admin/${view}`, {
         params: { grade: currentGrade },
-      });
+      });                                       
       if (view === 'teachers') {
-        if (!Object.keys(response.data).length) {
+        if (!Object.keys(response.data).length) {           
           setTeachers([])
         } else {
           const teacherArray = response.data;
@@ -116,7 +116,6 @@ const Admin = () => {
         }
       } else {
         if (!Object.keys(response.data).length) {
-          console.log('this is if theres no students')
           setStudents([])
         } else {
           const studentArray = response.data;
@@ -153,6 +152,10 @@ const Admin = () => {
   useEffect(() => {
     getData(currentGrade);
   }, [view]);
+
+  useEffect(() => {
+
+  }, [updatePopup])
 
   return view === 'teachers' ? (
     <div id='admin'>
