@@ -4,7 +4,6 @@ import styles from '../styles/popup.scss';
 
 const ModalUpdate = ({ name, classes, data, type, trigger, setTrigger }) => {
   const classesArray = [<option value='None'>None</option>];
-  console.log(type, data);
   //userdata should include display name
   for (let key in classes) {
     classesArray.push(<option value={key}>{key}</option>);
