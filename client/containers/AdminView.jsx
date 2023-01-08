@@ -46,7 +46,7 @@ const Admin = () => {
   if (view === 'teachers') {
     teachers.map((teacher) => {
       teacherArray.push(
-        <div key={teacher.first_name + teacher.last_name}>
+        <div key={teacher.first_name + teacher.last_name + teacher._id}>
           <ModalUpdate
             name={teacher.first_name + ' ' + teacher.last_name}
             data={teacher}
@@ -64,21 +64,20 @@ const Admin = () => {
       );
     });
   } else {
-    students.map((student) => {
+    students.map((student, i) => {
       studentArray.push(
-        <div key={student.first_name + student.last_name}>
+        <div key={student.first_name + student.last_name + student._id + i}>
           <ModalUpdate
             name={student.first_name + ' ' + student.last_name}
             data={student}
             classes={classes}
             type='student'
-            trigger={addPopup}
             trigger={updatePopup}
             setTrigger={setUpdatePopup}
           />
           <Student
             name={student.first_name + ' ' + student.last_name}
-            time={100}
+            time={student.minutes}
             trigger={setUpdatePopup}
           />
         </div>
