@@ -5,7 +5,6 @@ import Teacher from '../components/Teacher.jsx';
 import Student from '../components/Student.jsx';
 import ModalAdd from '../components/ModalAdd.jsx';
 import ModalUpdate from '../components/ModalUpdate.jsx';
-
 const Admin = () => {
   const gradeArray = [];
   const teacherArray = [];
@@ -73,22 +72,20 @@ const Admin = () => {
             data={student}
             classes={classes}
             type='student'
+            trigger={addPopup}
             trigger={updatePopup}
             setTrigger={setUpdatePopup}
           />
-          {console.log('minutes', student.minutes)}
           <Student
             name={student.first_name + ' ' + student.last_name}
-            time={student.minutes}
+            time={100}
             trigger={setUpdatePopup}
           />
         </div>
       );
     });
   }
-
   //get request for all teachers, should return an array of all teachers for that grade
-
   const getData = async (currentGrade) => {
     try {
       const response = await axios.get(`admin/${view}`, {
@@ -99,7 +96,7 @@ const Admin = () => {
         setTeachers(teacherArray);
       } else {
         const studentArray = response.data;
-        console.log('studentarray', studentArray);
+        console.log(studentArray);
         setStudents(studentArray);
       }
     } catch (err) {
@@ -180,5 +177,4 @@ const Admin = () => {
     </div>
   );
 };
-
 export default Admin;
