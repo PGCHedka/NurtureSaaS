@@ -14,11 +14,12 @@ const ModalAdd = ({ name, classes, type, trigger, setTrigger }) => {
     const class3 = classes[document.getElementById('s-cls-3').value];
     const class4 = classes[document.getElementById('s-cls-4').value];
     const class5 = classes[document.getElementById('s-cls-5').value];
+    console.log(classes);
     if(class1) student.classes.push(class1);
-    if(class2) student.classes.push(class1);
-    if(class3) student.classes.push(class1);
-    if(class4) student.classes.push(class1);
-    if(class5) student.classes.push(class1);
+    if(class2) student.classes.push(class2);
+    if(class3) student.classes.push(class3);
+    if(class4) student.classes.push(class4);
+    if(class5) student.classes.push(class5);
     const response = await axios.post(`admin/student`,
       { data: { ...student } });
   }

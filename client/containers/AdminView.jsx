@@ -107,7 +107,7 @@ const Admin = () => {
       const data = response.data.rows;
       const obj = {};
       for (let i = 0; i < data.length; i++) {
-        obj[data[i].name] = 1;
+        obj[data[i].name] = data[i]._id;
       }
       setClasses(obj);
     } catch (err) {
