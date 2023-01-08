@@ -72,7 +72,7 @@ const Admin = () => {
             data={student}
             classes={classes}
             type='student'
-            trigger={addPopup}
+            //trigger={addPopup}
             trigger={updatePopup}
             setTrigger={setUpdatePopup}
           />

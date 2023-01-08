@@ -52,7 +52,7 @@ const LoginAdmin = () => {
           <label>Enter your password:</label>
           <input
             onChange={handlePass}
-            type='text'
+            type='password'
             placeholder='Password'
           ></input>
           <input type='submit' className='submitBtn' value='Login'></input>
