@@ -48,7 +48,7 @@ const LoginTeacher = () => {
                     <label>Enter your teacher email:</label>
                     <input onChange={handleEmail} type="text" placeholder="Email"></input>
                     <label>Enter your password:</label>
-                    <input onChange={handlePass} type="text" placeholder="Password"></input>
+                    <input onChange={handlePass} type="password" placeholder="Password"></input>
                     <input type="submit" className='submitBtn' value="Login"></input>
                     <button className='submitBtn' onClick={() => navigate("/loginadmin")}>Are you an admin?</button>
                     <button className='submitBtn' onClick={() => navigate('/register')}>No account? Register</button>
