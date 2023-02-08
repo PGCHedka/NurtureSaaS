@@ -31,7 +31,6 @@ const LoginAdmin = () => {
     axios
       .post('auth/admin/login', { email: loginEmail, password: loginPass })
       .then((res) => {
-        console.log(res.data.id);
         dispatch(loginAction());
         dispatch(userIDAction(res.data.id));
         dispatch(userTypeAction('admin'));
